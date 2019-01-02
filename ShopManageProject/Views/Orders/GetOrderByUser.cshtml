@@ -1,0 +1,94 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<ShopManageProject.Models.Orders>
+
+@{
+    ViewBag.Title = "GetOrderByUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh Sách Đơn Hàng Của Bạn</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Ngày Tạo
+        </th>
+        <th>
+            Tên Khách Hàng
+        </th>
+        <th>
+            Điện Thoại
+        </th>
+        <th>
+            Địa Chỉ
+        </th>
+        <th>
+            Email
+        </th>
+        <th width="150px">
+            Trạng Thái
+        </th>
+        <th>
+            Tên Tài Khoản
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipMobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipEmail)
+            </td>
+            <td>
+                @if (item.Status == true)
+                {
+                    <mark style="background:red;color:white">Đã Nhận Hàng</mark>
+                }
+                else
+                {
+                    <mark style="background:green;color:yellow">Đang Giao</mark>
+                }
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.UserName)
+            </td>
+            @if (item.Status == false)
+            {
+                <td>
+                    <a href="~/Orders/AcceptOrder?orderId=@item.OrderId" class="btn btn-success">Xác Nhận</a>
+                </td>
+                <td>
+                    <a href="~/Orders/AcceptOrder?orderId=@item.OrderId" class="btn btn-danger">Hủy Đơn Hàng</a>
+                </td>
+            }
+
+            <td>
+                <a href="~/Orders/GetOrderDetail?orderId=@item.OrderId" class="btn btn-primary">Chi Tiết</a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="pager">
+    <p> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</p>
+    @Html.PagedListPager(Model, page => Url.Action("GetOrderByUser", new { userId=@Session["UserID"].ToString(), page }))
+</div>
+

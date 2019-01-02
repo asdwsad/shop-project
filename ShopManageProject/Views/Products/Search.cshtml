@@ -1,0 +1,60 @@
+﻿@using PagedList.Mvc
+
+@model PagedList.IPagedList<ShopManageProject.Models.Product>
+
+@{
+    IEnumerable<ShopManageProject.Models.Product> SearchProduct = ViewData["searchProduct"] as IEnumerable<ShopManageProject.Models.Product>;
+    IEnumerable<ShopManageProject.Models.ProductCategory> Category = ViewData["category"] as IEnumerable<ShopManageProject.Models.ProductCategory>;
+}
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Kết Quả Của "@Session["search"].ToString()" : <strong style="color:red">@Session["countSearch"].ToString()</strong> Kết Quả</h4>
+
+
+<div id="products" class="row list-group">
+    @foreach (var item in Model)
+    {
+       
+            <div class="item col-xs-3 col-lg-3 ">
+                <div class="thumbnail">
+                    <a href="/Products/Details/@item.ProductId"><img class="group list-group-image img-fluid" src="@Html.DisplayFor(modelItem => item.Image)" alt="" /></a>
+                    <div class="caption">
+                        <h3 class="group inner list-group-item-heading">
+                            <a href="/Products/Details/@item.ProductId"> @Html.DisplayFor(modelItem => item.Name)</a>
+                        </h3>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p style="color:red;width:auto">
+                                    @if (item.PromotionPrice != null)
+                                    {
+                                        <mark style="color:white ;background-color:red">@( String.Format("-{0:P1}", 1 - item.PromotionPrice / item.Price))</mark>
+                                        <del> @Html.DisplayFor(modelItem => item.Price)</del>
+                                        @Html.DisplayFor(modelItem => item.PromotionPrice)
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    }
+
+
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    }
+</div>
+
+
+<div id="pager">
+    <p> Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) của @Model.PageCount</p>
+    @Html.PagedListPager(Model, page => Url.Action("Search", new { @ViewBag.SearchTerm,page }))
+</div>

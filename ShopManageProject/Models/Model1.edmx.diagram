@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5fec63f725e14cc2ab1f6c8b021ae968" Name="Diagram1">
+        <EntityTypeShape EntityType="ShopManageDBModel.Category" Width="1.5" PointX="0.875" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManageDBModel.Orders" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManageDBModel.Product" Width="1.5" PointX="5.125" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManageDBModel.ProductCategory" Width="1.5" PointX="2.875" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManageDBModel.UserGroup" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManageDBModel.Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManageDBModel.OrderDetail" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="ShopManageDBModel.FK__ProductCa__Categ__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManageDBModel.FK__OrderDeta__Order__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManageDBModel.FK__Orders__UserId__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManageDBModel.FK__OrderDeta__Produ__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManageDBModel.FK__Product__Product__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManageDBModel.FK__Users__GroupId__4BAC3F29" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ShopManageDBModel.sysdiagrams" Width="1.5" PointX="7.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

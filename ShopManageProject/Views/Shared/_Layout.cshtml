@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background-image:url(/img/bg/14.png) ">
+    <div class="navbar navbar-default navbar-fixed-top " style="background-image:url(/img/bg/navbar.jpg)">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
+            <div class="navbar-collapse collapse">
+
+                <img src="~/img/logo/logo.gif" width="120" height="68" />
+                @if (Session["UserID"] != null)
+                {
+                    if (Session["count"] != null && Session["product"] != null)
+                    {
+                        <label class="navbar-fixed-bottom" style="margin-left:20px;margin-bottom:25px;font-size:14px">
+                            <a href="~/Cart/Index" style="color:cyan">
+                                <mark style="color:white ;background-color:red">
+                                    Bạn có <strong>@Session["count"].ToString()</strong> Sản Phẩm<strong style="color:yellow"> @Session["product"].ToString()</strong> Trong Giỏ
+                                </mark>
+                            </a>
+                        </label>
+                    }
+                    else
+                    {
+                        <label class="navbar-fixed-bottom" style="margin-left:20px;font-size:14px">
+                            <mark style="color:white ;background-color:red">
+                                Bạn có <strong>0</strong> Sản Phẩm Trong Giỏ
+                            </mark>
+                        </label>
+                    }
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li> <a href="~/Users/Details/@Session["UserID"].ToString()" style="color:cyan"><span class="glyphicon glyphicon-user"></span>Hi @Session["Name"].ToString()</a></li>
+
+                        <li><a href="~/Login/Login" style="color:cyan">Logout</a></li>
+
+                        <li><a href="~/Cart/Index" style="color:cyan">Giỏ Hàng</a></li>
+
+                        <li><a href="~/Orders/GetOrderByUser?userId=@Session["UserID"].ToString()" style="color:cyan">Đơn Hàng</a></li>
+                    </ul>
+                    //Session["layout"] = int.Parse(Session["count"].ToString());
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="~/Users/Create" style="color:cyan"><span class="glyphicon glyphicon-user "></span> Sign Up</a></li>
+
+                        <li><a href="~/Login/Login" style="color:cyan">Login</a></li>
+                    </ul>
+                }
+
+            </div>
+            <div class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav na">
+                    <li><a href="~/Products/Index" style="color:cyan">Trang Chủ</a></li>
+                    <li><a href="~/Home/About" style="color:cyan">Giới Thiệu</a></li>
+                    <li><a href="~/Home/Contact" style="color:cyan">Tin Tức</a></li>
+                    <li><a href="~/Products/Index" style="color:cyan">Sản Phẩm</a></li>
+                    <li><a href="" style="color:cyan">Liên Hệ</a></li>
+                </ul>
+
+                @using (Html.BeginForm("Search", "Products", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
+                {
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm" name="SearchTerm" value="@ViewBag.SearchTerm" id="search-box">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+
+    </div>
+    <br /><br /><br /><br />
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

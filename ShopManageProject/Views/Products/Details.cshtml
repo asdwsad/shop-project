@@ -1,0 +1,107 @@
+﻿@model ShopManageProject.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+
+<div class="container">
+    <h2> <a href="~/Products/Filter/@Model.ProductCategory.ProductCategoryId">@Html.DisplayFor(model => model.ProductCategory.Name)</a> > <a href="#">@Html.DisplayFor(model => model.Name)</a> [@Html.DisplayFor(model => model.Code)]</h2>
+    <div class="col-md-3">
+        <img src="@Html.DisplayFor(model => model.Image)" width="400" />
+    </div>
+
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+        <dl class="dl-horizontal">
+
+            <dt>
+                Mô Tả :
+            </dt>
+
+            <dd style="width:300px">
+                @Html.DisplayFor(model => model.Description)
+
+            </dd>
+
+
+            <dt>
+                Giá :
+            </dt>
+
+            <dd style="color:red">
+                <del> @Html.DisplayFor(model => model.Price)</del>
+            </dd>
+
+            <dt>
+                Giá Khuyến Mại :
+            </dt>
+
+            <dd style="color:red">
+                <strong> @Html.DisplayFor(model => model.PromotionPrice)</strong>
+            </dd>
+
+            <dt>
+
+                Số Lượng :
+            </dt>
+
+            <dd>
+                @if (Model.Quanlity == 0)
+                {
+                    <div> <strong style="color:red">Hết Hàng</strong></div>
+                }
+                else
+                {
+                    <div>
+                        <input type="number" id="_quantity" class="count alert-success" value="1" min="1" max=" @Html.DisplayFor(model => model.Quanlity)" style="height:20px" />
+                        <strong style="color:red"> @Html.DisplayFor(model => model.Quanlity) </strong>Sản phẩm có sẵn
+                    </div>}
+            </dd>
+
+            <dt>
+                Ngày Cập Nhật :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
+
+            <dt>
+                Loại Hàng :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductCategory.Name)
+            </dd>
+
+
+            <dd>
+                @if (Model.Quanlity > 0)
+                {
+                <a class="btn btn-success" id="cart" href="~/Cart/AddItem?productId=@Html.DisplayFor(model => model.ProductId)&quantity"
+                   onclick="location.href = this.href + '=' +  document.getElementById('_quantity').value  ; return false;">Add to cart</a>
+                }
+            </dd>
+            @if (Session["count"] == null)
+            {
+                Session.Remove("cart");
+            }
+
+        </dl>
+
+    </div>
+</div>
+<br />
+
+
+
+
+
+<p>
+
+    @Html.ActionLink("Back to Home", "Index")
+</p>
+
