@@ -12,7 +12,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style="background-image:url(/img/bg/14.png) ">
+<body>
     <div class="navbar navbar-default navbar-fixed-top " style="background-image:url(/img/bg/navbar.jpg)">
         <div class="container">
             <div class="navbar-header">
@@ -29,32 +29,41 @@
                 <img src="~/img/logo/logo.gif" width="120" height="68" />
                 @if (Session["UserID"] != null)
                 {
-                    if (Session["count"] != null && Session["product"] != null)
-                    {
-                        <label class="navbar-fixed-bottom" style="margin-left:20px;margin-bottom:25px;font-size:14px">
-                            <a href="~/Cart/Index" style="color:cyan">
+                    @*if (Session["count"] != null && Session["product"] != null)
+                        {
+                            <label class="navbar-fixed-bottom" style="margin-left:20px;margin-bottom:25px;font-size:14px">
+                                <a href="~/Cart/Index" style="color:cyan">
+                                    <mark style="color:white ;background-color:red">
+                                        Bạn có <strong>@Session["count"].ToString()</strong> Sản Phẩm<strong style="color:yellow"> @Session["product"].ToString()</strong> Trong Giỏ
+                                    </mark>
+                                </a>
+                            </label>
+                        }
+                        else
+                        {
+                            <label class="navbar-fixed-bottom" style="margin-left:20px;font-size:14px">
                                 <mark style="color:white ;background-color:red">
-                                    Bạn có <strong>@Session["count"].ToString()</strong> Sản Phẩm<strong style="color:yellow"> @Session["product"].ToString()</strong> Trong Giỏ
+                                    Bạn có <strong>0</strong> Sản Phẩm Trong Giỏ
                                 </mark>
-                            </a>
-                        </label>
-                    }
-                    else
-                    {
-                        <label class="navbar-fixed-bottom" style="margin-left:20px;font-size:14px">
-                            <mark style="color:white ;background-color:red">
-                                Bạn có <strong>0</strong> Sản Phẩm Trong Giỏ
-                            </mark>
-                        </label>
-                    }
+                            </label>
+                        }*@
 
+                    
                     <ul class="nav navbar-nav navbar-right">
                         <li> <a href="~/Users/Details/@Session["UserID"].ToString()" style="color:cyan"><span class="glyphicon glyphicon-user"></span>Hi @Session["Name"].ToString()</a></li>
 
                         <li><a href="~/Login/Login" style="color:cyan">Logout</a></li>
+                        @if (Session["count"] == null)
+                        {
+                            <li><a href="~/Cart/Index" style="color:cyan">Giỏ Hàng </a></li>
+                        }
+                        else
+                        {
+                            //count += int.Parse(Session["count"].ToString());
+                            //Session["count"] = count;
 
-                        <li><a href="~/Cart/Index" style="color:cyan">Giỏ Hàng</a></li>
-
+                            <li><a href="~/Cart/Index" style="color:cyan">Giỏ Hàng <sup style="border-radius:10px;background-color:red;font-size:17px">@Session["count"].ToString()</sup></a></li>
+                        }
                         <li><a href="~/Orders/GetOrderByUser?userId=@Session["UserID"].ToString()" style="color:cyan">Đơn Hàng</a></li>
                     </ul>
                     //Session["layout"] = int.Parse(Session["count"].ToString());

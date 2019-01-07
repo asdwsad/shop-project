@@ -44,9 +44,14 @@ namespace ShopManageProject.Models.DAO
 
         public void updateOrder(Orders orders)
         {
-            db.Entry(orders).State = EntityState.Modified;
-            db.SaveChanges();
+           
+                db.Entry(orders).State = EntityState.Modified;
+            //db.Orders.
+                db.SaveChanges();
+            
         }
+
+
 
     }
 }

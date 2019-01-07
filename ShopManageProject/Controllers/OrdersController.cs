@@ -109,15 +109,21 @@ namespace ShopManageProject.Controllers
 
             return View(list);
         }
-
+        
         public ActionResult AcceptOrder(long orderId)
         {
-            if (ModelState.IsValid)
+            try
             {
-                orderService.updateOrder(orderId);
-                return RedirectToAction("GetOrderByUser", new { userId = Session["UserID"].ToString()});
+                if (ModelState.IsValid)
+                {
+                    orderService.updateOrder(orderId);
+                    return RedirectToAction("GetOrderByUser", new { userId = Session["UserID"].ToString() });
+                }
             }
-
+            catch
+            {
+                return View("Error");
+            }
             return View();
         }
 
