@@ -12,42 +12,63 @@
     ViewBag.Title = "Filter";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="@Url.Content("~/Content/hover.css")" rel="stylesheet" type="text/css" />
 
+@{ int productCount = 0;}
 <div class="container">
 
-    <div class="col-md-2">
-        <h4 style="color:red;width:200px">Danh mục sản phẩm</h4>
+    <div class="col-md-2 col-xs-12">
+       
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#dropFilter">
+                <strong style="color:red"> Menu</strong>
+            </button>
 
-        @foreach (var item in CategoryList)
-        {
-            <div class="btn-group dropdown-menu-right">
+            <div class="collapse navbar-collapse" id="dropFilter">
+                <h4 style="color:red;width:200px;font-size:larger">Danh mục sản phẩm</h4>
 
-
-
-                <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                   style="width:180px;background-color:antiquewhite">
-                    @item.Name
-                </a>
-                <ul class="dropdown-menu">
-
-                    @foreach (var i in allProduct)
+                @foreach (var item in CategoryList)
+                {
+                    foreach (var product in allProduct)
                     {
-                        if (i.ProductCategoryId == item.ProductCategoryId)
+                        if (item.ProductCategoryId == product.ProductCategoryId)
                         {
-                            <li> <a href="~/Products/Details/@i.ProductId">@i.Name</a></li>
+                            productCount++;
                         }
                     }
-                </ul>
-            </div>
-        }
 
+                    if (productCount > 0)
+                    {
+                       
+                        <div class="dropdown-submenu btn-group dropdown-menu-right">
+
+                            <a href="/Products/Filter/@item.ProductCategoryId" class="btn btn-secondary" style="width:180px;max-height:50px;background-color:antiquewhite">
+                                <strong style="margin-right:120px">@item.Name</strong>
+                            </a>
+                            <ul class="dropdown-menu">
+
+                                @foreach (var i in allProduct)
+                                {
+                                    if (i.ProductCategoryId == item.ProductCategoryId)
+                                    {
+                                        <li>
+                                            <a href="~/Products/Details/@i.ProductId">@i.Name</a>
+                                        </li>
+                                    }
+                                    productCount = 0;
+                                }
+                            </ul>
+
+                        </div>
+                    }
+                }
+            </div>  
     </div>
 
     <div class="col-md-1">
 
     </div>
 
-    @{long ?id = 0;}
+    @{long? id = 0;}
     <div class="col-md-9">
         <h2 class="panel-heading">@Session["CategoryName"].ToString()</h2>
         <div id="products" class="row list-group">
@@ -55,7 +76,7 @@
             @foreach (var item in Model)
             {
 
-                <div class="item col-xs-3 col-lg-3 ">
+                <div class="item col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="thumbnail">
                         <a href="/Products/Details/@item.ProductId"><img class="group list-group-image img-fluid" src="@Html.DisplayFor(modelItem => item.Image)" alt="" /></a>
                         <div class="caption">
@@ -89,7 +110,7 @@
 
         <div id="pager">
             <p> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</p>
-            @Html.PagedListPager(Model, page => Url.Action("Filter", new {id,page}))
+            @Html.PagedListPager(Model, page => Url.Action("Filter", new { id, page }))
         </div>
 
     </div>
