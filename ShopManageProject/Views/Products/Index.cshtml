@@ -23,13 +23,13 @@
 </style>
 
 @{ int productCount = 0;}
-<div class="container">
+<div >
 
     <div class="col-md-2 col-xs-12">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#drop">
             <strong style="color:red"> Menu</strong>
         </button>
-        <div class="collapse navbar-collapse" id="drop">
+        <div class="collapse navbar-collapse" id="drop" style="height:300px">
             <h4 style="color:red;width:200px">Danh mục sản phẩm</h4>
 
             @foreach (var item in CategoryList)
@@ -80,7 +80,7 @@
 
     <div class="col-md-9 col-xs-12">
 
-        <div class="container" style="width:auto">
+        <div style="width:auto">
 
             <div class="row">
                 <div>
