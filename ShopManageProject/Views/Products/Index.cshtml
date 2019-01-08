@@ -17,8 +17,8 @@
     }
 
         .carousel-control.left, .carousel-control.right {
-            /*margin-left: 25px;
-            margin-right: 25px;*/
+            margin-left: 25px;
+            margin-right: 25px;
             background-image: none;
         }
         a:hover{
@@ -31,7 +31,7 @@
 <div>
     
     <div class="col-md-2 col-xs-12">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#drop" style="margin-top:-50px;margin-right:-18px">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#drop" style="margin-top:-25px;margin-right:-20px">
             <strong style="color:red"> Menu</strong>
         </button>
         <div class="collapse navbar-collapse" id="drop" style="height:300px">
@@ -90,17 +90,17 @@
                 <div>
                     <div class="carousel slide multi-item-carousel" id="theCarousel" data-ride="carousel" data-interval="2700">
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <div class="d-block w-100"><img src="~/img/slide/slide1.png" class="img-responsive center-block" style=""></div>
+                            <div class="item active center-block">
+                                <div class="d-block w-100"><img src="~/img/slide/slide1.jpg" class="img-responsive center-block" style=""></div>
                             </div>
-                            <div class="item">
-                                <div class="d-block w-100"><img src="~/img/slide/slide2.png" class="img-responsive center-block"></div>
+                            <div class="item center-block">
+                                <div class="d-block w-100"><img src="~/img/slide/slide2.jpg" class="img-responsive center-block"></div>
                             </div>
-                            <div class="item">
-                                <div class="d-block w-100"><img src="~/img/slide/slide3.png" class="img-responsive center-block"></div>
+                            <div class="item center-block">
+                                <div class="d-block w-100"><img src="~/img/slide/slide3.jpg" class="img-responsive center-block"></div>
                             </div>
-                            <div class="item">
-                                <div class="d-block w-100"><img src="~/img/slide/slide4.png" class="img-responsive center-block"></div>
+                            <div class="item center-block">
+                                <div class="d-block w-100"><img src="~/img/slide/slide4.jpg" class="img-responsive center-block"></div>
                             </div>
 
                             <!-- add  more items here -->
@@ -130,56 +130,19 @@
             <h2>Sản Phẩm</h2>
 
             <h3>Có Gì Mới?</h3>
+            <div class="row">
+                <div id="a" class="carousel slide" data-ride="carousel" data-interval="2500">
+                    <div class="carousel-inner " >
 
-            <div id="a" class="carousel slide" data-ride="carousel" data-interval="2500">
-                <div class="carousel-inner " style="max-height:320px">
 
-
-                    @foreach (var item in allProduct)
-                    {
-
-                        <div class="item active center-block ">
-                            <div class="thumbnail">
-                                <a href="/Products/Details/@item.ProductId"><img src="@Html.DisplayFor(modelItem => item.Image)" style="width:auto;height:220px" alt="" /></a>
-                                <div class="caption">
-                                    <h3 class="group inner list-group-item-heading" style="height:50px">
-                                        <a href="/Products/Details/@item.ProductId"> @Html.DisplayFor(modelItem => item.Name)</a>
-                                    </h3>
-
-                                    <div class="row">
-                                        <div class="col-xs-12 ">
-                                            <p style="color:red;width:auto">
-                                                @if (item.PromotionPrice != null)
-                                                {
-                                                    <mark style="color:white ;background-color:red">@( String.Format("-{0:P1}", 1 - item.PromotionPrice / item.Price))</mark>
-                                                    <del> @Html.DisplayFor(modelItem => item.Price)</del>
-                                                    @Html.DisplayFor(modelItem => item.PromotionPrice)
-                                                }
-                                                else
-                                                {
-                                                    @Html.DisplayFor(modelItem => item.Price)
-                                                }
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        ProductId = item.ProductId;
-
-                        break;
-                    }
-
-                    @foreach (var item in allProduct)
-                    {
-                        if (item.ProductId != ProductId)
+                        @foreach (var item in allProduct)
                         {
-                            <div class="item center-block ">
+
+                            <div class="item active center-block ">
                                 <div class="thumbnail">
                                     <a href="/Products/Details/@item.ProductId"><img src="@Html.DisplayFor(modelItem => item.Image)" style="width:auto;height:220px" alt="" /></a>
                                     <div class="caption">
-                                        <h3 class="group inner list-group-item-heading" style="height:50px;">
+                                        <h3 class="group inner list-group-item-heading" style="height:50px">
                                             <a href="/Products/Details/@item.ProductId"> @Html.DisplayFor(modelItem => item.Name)</a>
                                         </h3>
 
@@ -203,16 +166,53 @@
                                     </div>
                                 </div>
                             </div>
+                            ProductId = item.ProductId;
 
+                            break;
                         }
-                    }
+
+                        @foreach (var item in allProduct)
+                        {
+                            if (item.ProductId != ProductId)
+                            {
+                                <div class="item center-block ">
+                                    <div class="thumbnail">
+                                        <a href="/Products/Details/@item.ProductId"><img src="@Html.DisplayFor(modelItem => item.Image)" style="width:auto;height:220px" alt="" /></a>
+                                        <div class="caption">
+                                            <h3 class="group inner list-group-item-heading" style="height:50px;">
+                                                <a href="/Products/Details/@item.ProductId"> @Html.DisplayFor(modelItem => item.Name)</a>
+                                            </h3>
+
+                                            <div class="row">
+                                                <div class="col-xs-12 ">
+                                                    <p style="color:red;width:auto">
+                                                        @if (item.PromotionPrice != null)
+                                                        {
+                                                            <mark style="color:white ;background-color:red">@( String.Format("-{0:P1}", 1 - item.PromotionPrice / item.Price))</mark>
+                                                            <del> @Html.DisplayFor(modelItem => item.Price)</del>
+                                                            @Html.DisplayFor(modelItem => item.PromotionPrice)
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.DisplayFor(modelItem => item.Price)
+                                                        }
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+
+                    </div>
+                    <a class="left carousel-control " href="#a" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"> </i> </a>
+                    <a class="right carousel-control" href="#a" data-slide="next"><i class="glyphicon glyphicon-chevron-right"> </i>  </a>
 
                 </div>
-                <a class="left carousel-control " href="#a" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"> </i> </a>
-                <a class="right carousel-control" href="#a" data-slide="next"><i class="glyphicon glyphicon-chevron-right"> </i>  </a>
-
             </div>
-
 
 
             @foreach (var i in CategoryList)
