@@ -1,11 +1,10 @@
-﻿@using PagedList.Mvc
+@using PagedList.Mvc
 
 @model PagedList.IPagedList<ShopManageProject.Models.Product>
 
 @{
     IEnumerable<ShopManageProject.Models.Product> allProduct = ViewData["product"] as IEnumerable<ShopManageProject.Models.Product>;
     IEnumerable<ShopManageProject.Models.ProductCategory> CategoryList = ViewData["productCategory"] as IEnumerable<ShopManageProject.Models.ProductCategory>;
-
     IEnumerable<ShopManageProject.Models.Product> FilterProduct = ViewData["filterProduct"] as IEnumerable<ShopManageProject.Models.Product>;
 }
 @{
@@ -15,53 +14,54 @@
 <link href="@Url.Content("~/Content/hover.css")" rel="stylesheet" type="text/css" />
 
 @{ int productCount = 0;}
-<div class="container">
+<div class="row list-group">
 
     <div class="col-md-2 col-xs-12">
-       
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#dropFilter">
-                <strong style="color:red"> Menu</strong>
-            </button>
 
-            <div class="collapse navbar-collapse" id="dropFilter">
-                <h4 style="color:red;width:200px;font-size:larger">Danh mục sản phẩm</h4>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#dropFilter" style="margin-top:-50px;margin-right:-18px">
+            <strong style="color:red"> Menu</strong>
+        </button>
 
-                @foreach (var item in CategoryList)
+        <div class="collapse navbar-collapse" id="dropFilter" >
+            <h4 style="color:red;width:200px;font-size:larger">Danh mục sản phẩm</h4>
+
+            @foreach (var item in CategoryList)
+            {
+                foreach (var product in allProduct)
                 {
-                    foreach (var product in allProduct)
+                    if (item.ProductCategoryId == product.ProductCategoryId)
                     {
-                        if (item.ProductCategoryId == product.ProductCategoryId)
-                        {
-                            productCount++;
-                        }
-                    }
-
-                    if (productCount > 0)
-                    {
-                       
-                        <div class="dropdown-submenu btn-group dropdown-menu-right">
-
-                            <a href="/Products/Filter/@item.ProductCategoryId" class="btn btn-secondary" style="width:180px;max-height:50px;background-color:antiquewhite">
-                                <strong style="margin-right:120px">@item.Name</strong>
-                            </a>
-                            <ul class="dropdown-menu">
-
-                                @foreach (var i in allProduct)
-                                {
-                                    if (i.ProductCategoryId == item.ProductCategoryId)
-                                    {
-                                        <li>
-                                            <a href="~/Products/Details/@i.ProductId">@i.Name</a>
-                                        </li>
-                                    }
-                                    productCount = 0;
-                                }
-                            </ul>
-
-                        </div>
+                        productCount++;
                     }
                 }
-            </div>  
+
+                if (productCount > 0)
+                {
+
+                    <div class="dropdown-submenu btn-group dropdown-menu-right">
+
+                        <a href="/Products/Filter/@item.ProductCategoryId" class="btn btn-secondary" style="width:180px;max-height:50px;background-color:antiquewhite">
+                            <strong style="margin-right:120px">@item.Name</strong>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            @foreach (var i in allProduct)
+                            {
+                                if (i.ProductCategoryId == item.ProductCategoryId)
+                                {
+                                    <li>
+                                        <a href="~/Products/Details/@i.ProductId">@i.Name</a>
+                                    </li>
+                                }
+                                productCount = 0;
+                            }
+                        </ul>
+
+                    </div>
+                }
+            }
+        </div>
+        <br /><br /><br />
     </div>
 
     <div class="col-md-1">
