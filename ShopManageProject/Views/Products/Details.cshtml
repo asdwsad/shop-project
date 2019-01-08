@@ -56,7 +56,15 @@
                 else
                 {
                     <div>
-                        <input type="number" id="_quantity" class="count alert-success" value="@Html.DisplayFor(model => model.Quanlity)" min="1" max=" @Html.DisplayFor(model => model.Quanlity)" style="height:20px" />
+                        @if (Session["count"] != null)
+                        {
+                            <input type="number" id="_quantity" class="count alert-success" value="@Session["count"]" min="1" max=" @Html.DisplayFor(model => model.Quanlity)" style="height:20px" />
+                        }
+                        else
+                        {
+                            <input type="number" id="_quantity" class="count alert-success" value="1" min="1" max=" @Html.DisplayFor(model => model.Quanlity)" style="height:20px" />
+                        }
+
                         <strong style="color:red"> @Html.DisplayFor(model => model.Quanlity) </strong>Sản phẩm có sẵn
                     </div>}
             </dd>
