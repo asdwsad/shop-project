@@ -1,0 +1,154 @@
+﻿
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<ShopManageProject.Models.Product>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<link href="@Url.Content("~/Content/popup.css")" rel="stylesheet" type="text/css" />
+
+<div class="container" id="productList">
+    <h2>Quản lý sản phẩm</h2>
+    <input type="button" value="Create" class="btn btn-success" id="load" />
+    <br />  
+    <div class="container" id="content"></div>
+
+    <table class="table">
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                Loại Sản Phẩm
+            </th>
+            <th>
+                Tên Sản Phẩm
+            </th>
+
+            <th>
+                Image
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>
+                Giá Khuyến Mại
+            </th>
+            <th>
+                Số Lượng
+            </th>
+            <th>
+                Ngày Cập Nhật
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductCategory.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Image)" width="60" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PromotionPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quanlity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning  a1" id="@item.ProductId">Sửa</button> |
+                    <button type="button" class="btn btn-danger del1" data-toggle="modal" data-target="#myModal" id="@item.ProductId">Delete</button>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    <div class="container ">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content " id="del">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $('#load').click(function (e) {
+                e.preventDefault();
+                //$("#content").animate({
+                //    //width: "300px",
+                //    //height: "300px",
+                //    //marginLeft: "5px",
+                //    //borderWidth: "10px",
+                //    //opacity: 1
+                //});
+
+                $('#content').load('CreateProduct #createForm');
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('.a1').click(function () {
+                var id = $(this).attr('id');
+                $('#content').load('EditProduct/' + id + ' #editForm');
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('.del1').click(function () {
+                var id = $(this).attr('id');
+                $('#del').load('DeleteProduct/' + id + ' #delForm');
+            });
+        });
+
+
+
+
+    </script>
+
+
+
+    <div id="pager">
+        <p> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</p>
+        @Html.PagedListPager(Model, page => Url.Action("ProductList", new { page }))
+    </div>
+</div>
+

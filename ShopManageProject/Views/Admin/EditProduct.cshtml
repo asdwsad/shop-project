@@ -1,0 +1,132 @@
+﻿@model ShopManageProject.Models.Product
+
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<h2>EditProduct</h2>
+
+<div class="container" id="editForm">
+    
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProductId)
+        <div class="form-group col-md-6 col-sm-12">
+            <div class="col-md-3">
+                Tên Sản Phẩm
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 col-sm-12">
+            <div class="col-md-3">
+                Code
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 col-sm-12">
+            <div class="col-md-3">
+                Mô Tả
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 col-sm-12">
+            <div class="col-md-3">
+                Đường Dẫn Ảnh
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 col-sm-12">
+            <div class="col-md-3">
+                Giá
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 col-sm-12">
+            <div class="col-md-3">Giá Khuyến Mại</div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.PromotionPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PromotionPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 col-sm-12">
+            <div class="col-md-3">
+                Số Lượng
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Quanlity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Quanlity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 col-sm-12">
+            <div class="col-md-3">
+                Loại Sản Phẩm
+            </div>
+            <div class="col-md-9">
+                @Html.DropDownList("ProductCategoryId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductCategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group col-md-6 col-sm-12">
+            <div class=" col-md-2">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+
+        </div>
+
+    }
+</div>
+
+@*<div class="container">
+    <div id="list"></div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#list').load('ProductList #productList');
+        //$("#list").animate({
+        //    width: "300px",
+        //    height: "300px",
+        //    marginLeft: "5px",
+        //    borderWidth: "10px",
+        //    opacity: 1
+        //});
+        //$('#load').click(function (e) {
+        //    e.preventDefault();
+        //    $('#content').load('CreateProduct #createForm');
+        //});
+    });
+
+
+
+</script>*@

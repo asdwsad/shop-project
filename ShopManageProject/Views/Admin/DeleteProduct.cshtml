@@ -1,0 +1,94 @@
+﻿@model ShopManageProject.Models.Product
+
+@{
+    ViewBag.Title = "DeleteProduct";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<div class="container" id="delForm">
+
+    <h3>Bạn có muốn xóa sản phẩm này ?</h3>
+
+
+    <div class="form-group col-md-12 col-sm-12">
+        <div class="col-md-3">
+            Code
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Code)
+        </div>
+    </div>
+
+    <div class="form-group col-md-12 col-sm-12">
+        <div class="col-md-3">
+            Tên
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+    </div>
+
+    <div class="form-group col-md-12 col-sm-12">
+        <div class="col-md-3">
+            Image
+        </div>
+        <div class="col-md-9">
+            <img src="@Html.DisplayFor(model => model.Image)" width="60" />
+        </div>
+    </div>
+
+    <div class="form-group col-md-12 col-sm-12">
+        <div class="col-md-3">
+            Giá
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Price)
+        </div>
+    </div>
+
+    <div class="form-group col-md-12 col-sm-12">
+        <div class="col-md-3">
+            Giá khuyến mại
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.PromotionPrice)
+        </div>
+    </div>
+
+    <div class="form-group col-md-12 col-sm-12">
+        <div class="col-md-3">
+            Số Lượng
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Quanlity)
+        </div>
+    </div>
+
+    <div class="form-group col-md-12 col-sm-12">
+        <div class="col-md-3">
+            Ngày Cập Nhật
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.CreateDate)
+        </div>
+    </div>
+
+    <div class="form-group col-md-12 col-sm-12">
+        <div class="col-md-3">
+            Loại
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.ProductCategory.Name)
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group col-md-12 col-sm-12">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+
+        </div>
+    }
+</div>
