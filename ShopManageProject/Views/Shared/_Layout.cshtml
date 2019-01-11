@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - My ASP.NET </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -36,7 +36,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li> <a href="~/Users/Details/@Session["UserID"].ToString()" style="color:cyan"><span class="glyphicon glyphicon-user"></span>Hi @Session["Name"].ToString()</a></li>
 
-                        <li><a href="~/Login/Login" style="color:cyan">Logout</a></li>
+                        <li><a href="~/Login/Login" style="color:cyan">Đăng xuất</a></li>
                         @if (Session["count"] == null)
                         {
                             <li><a href="~/Cart/Index" style="color:cyan">Giỏ Hàng </a></li>
@@ -53,9 +53,9 @@
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="~/Users/Create" style="color:cyan"><span class="glyphicon glyphicon-user "></span> Sign Up</a></li>
+                        <li><a href="~/Users/Create" style="color:cyan"><span class="glyphicon glyphicon-user "></span>Đăng ký</a></li>
 
-                        <li><a href="~/Login/Login" style="color:cyan">Login</a></li>
+                        <li><a href="~/Login/Login" style="color:cyan">Đăng nhập</a></li>
                     </ul>
                 }
 
@@ -78,7 +78,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" id="search" class="btn btn-success"style="width:40px;height:35px"><i class="glyphicon glyphicon-search" ></i></button>
+                        <button type="submit" id="search" class="btn btn-success"><i class="glyphicon glyphicon-search" ></i></button>
                     </div>
                 }
 
@@ -88,17 +88,20 @@
 
     <script>
         $(document).ready(function () {
-            $('#search').attr('disabled', true);
-
-            $('#search-box').keyup(function () {
-                if ($(this).val().toString().trim().length != 0) {
-                    $('#search').attr('disabled', false);
+            $('#search').click(function () {
+                if ($('#search-box').val().toString().trim().length == 0) {
+                    alert('Bạn chưa nhập từ khóa tìm kiếm');
+                    return false;
                 }
-                else {
-                    $('#search').attr('disabled', true);
-                }
-            })
+            });
         });
+
+        //function checkNull() {
+        //    if ($('#search-box').val().toString().trim().length ==0) {
+        //        alert("Bạn chưa nhập từ khóa tìm kiếm");
+        //        return false;
+        //    }
+        //}
     </script>
 
     <div class="container body-content">
