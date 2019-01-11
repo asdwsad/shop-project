@@ -9,7 +9,11 @@ namespace ShopManageProject.Controllers
 {
     public class CartController : Controller
     {
+<<<<<<< HEAD
        public static int count;
+=======
+        static int count;
+>>>>>>> update1
         // GET: Cart
         private string cartSession = "cart";
         public ActionResult Index()

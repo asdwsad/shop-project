@@ -26,6 +26,7 @@
             text-decoration:none;
         }
 </style>
+<<<<<<< HEAD
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 @{ int productCount = 0;}
 <div>
@@ -35,6 +36,17 @@
             <strong style="color:red"> Menu</strong>
         </button>
         <div class="collapse navbar-collapse" id="drop" style="height:300px">
+=======
+
+@{ int productCount = 0;}
+<div class="container">
+
+    <div class="col-md-2 col-xs-12">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#drop">
+            <strong style="color:red"> Menu</strong>
+        </button>
+        <div class="collapse navbar-collapse" id="drop">
+>>>>>>> update1
             <h4 style="color:red;width:200px">Danh mục sản phẩm</h4>
 
             @foreach (var item in CategoryList)
@@ -76,7 +88,12 @@
         <br /><br /><br />
     </div>
 
+<<<<<<< HEAD
    
+=======
+    
+
+>>>>>>> update1
     <div class="col-md-1">
 
     </div>
@@ -138,6 +155,7 @@
                         @foreach (var item in allProduct)
                         {
 
+<<<<<<< HEAD
                             <div class="item active center-block ">
                                 <div class="thumbnail">
                                     <a href="/Products/Details/@item.ProductId"><img src="@Html.DisplayFor(modelItem => item.Image)" style="width:auto;height:220px" alt="" /></a>
@@ -162,6 +180,33 @@
                                                 </p>
                                             </div>
 
+=======
+                    @foreach (var item in allProduct)
+                    {
+
+                        <div class="item active center-block ">
+                            <div class="thumbnail">
+                                <a href="/Products/Details/@item.ProductId"><img src="@Html.DisplayFor(modelItem => item.Image)" style="width:auto;height:220px" alt="" /></a>
+                                <div class="caption">
+                                    <h3 class="group inner list-group-item-heading" style="height:50px">
+                                        <a href="/Products/Details/@item.ProductId"> @Html.DisplayFor(modelItem => item.Name)</a>
+                                    </h3>
+
+                                    <div class="row">
+                                        <div class="col-xs-12 ">
+                                            <p style="color:red;width:auto">
+                                                @if (item.PromotionPrice != null)
+                                                {
+                                                    <mark style="color:white ;background-color:red">@( String.Format("-{0:P1}", 1 - item.PromotionPrice / item.Price))</mark>
+                                                    <del> @Html.DisplayFor(modelItem => item.Price)</del>
+                                                    @Html.DisplayFor(modelItem => item.PromotionPrice)
+                                                }
+                                                else
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.Price)
+                                                }
+                                            </p>
+>>>>>>> update1
                                         </div>
                                     </div>
                                 </div>
@@ -173,6 +218,7 @@
 
                         @foreach (var item in allProduct)
                         {
+<<<<<<< HEAD
                             if (item.ProductId != ProductId)
                             {
                                 <div class="item center-block ">
@@ -205,6 +251,37 @@
                                 </div>
 
                             }
+=======
+                            <div class="item center-block ">
+                                <div class="thumbnail">
+                                    <a href="/Products/Details/@item.ProductId"><img src="@Html.DisplayFor(modelItem => item.Image)" style="width:auto;height:220px" alt="" /></a>
+                                    <div class="caption">
+                                        <h3 class="group inner list-group-item-heading" style="height:50px">
+                                            <a href="/Products/Details/@item.ProductId"> @Html.DisplayFor(modelItem => item.Name)</a>
+                                        </h3>
+
+                                        <div class="row">
+                                            <div class="col-xs-12 ">
+                                                <p style="color:red;width:auto">
+                                                    @if (item.PromotionPrice != null)
+                                                    {
+                                                        <mark style="color:white ;background-color:red">@( String.Format("-{0:P1}", 1 - item.PromotionPrice / item.Price))</mark>
+                                                        <del> @Html.DisplayFor(modelItem => item.Price)</del>
+                                                        @Html.DisplayFor(modelItem => item.PromotionPrice)
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.DisplayFor(modelItem => item.Price)
+                                                    }
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+>>>>>>> update1
                         }
 
                     </div>

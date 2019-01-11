@@ -115,6 +115,7 @@ namespace ShopManageProject.Controllers
         public ActionResult AcceptOrder(long orderId)
         {
             try
+<<<<<<< HEAD
             {
                 if (ModelState.IsValid)
                 {
@@ -124,6 +125,17 @@ namespace ShopManageProject.Controllers
             }
             catch
             {
+=======
+            {
+                if (ModelState.IsValid)
+                {
+                    orderService.updateOrder(orderId);
+                    return RedirectToAction("GetOrderByUser", new { userId = Session["UserID"].ToString() });
+                }
+            }
+            catch
+            {
+>>>>>>> update1
                 return View("Error");
             }
             return View();

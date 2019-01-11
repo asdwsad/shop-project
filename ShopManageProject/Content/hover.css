@@ -7,12 +7,17 @@
         left: 100%;
         margin-top: -10px;
         margin-left: -50px;
+<<<<<<< HEAD
+=======
+        
+>>>>>>> update1
     }
 
     .dropdown-submenu:hover > .dropdown-menu {
         display: block;
     }
 
+<<<<<<< HEAD
 .dropdown:hover > .dropdown-submenu {
     display: block;
 }
@@ -20,6 +25,13 @@
 
 
 /*.dropdown-submenu > a:after {
+=======
+    .dropdown:hover > .dropdown-submenu  {
+            display: block;
+     }
+
+    /*.dropdown-submenu > a:after {
+>>>>>>> update1
         display: block;
         content: " ";
         float: right;
@@ -38,6 +50,14 @@
         float: none;
     }*/
 
+<<<<<<< HEAD
+=======
+        /*.dropdown-submenu.pull-left > .dropdown-menu {
+            /*left: -100%;*/
+            margin-left: 5px;
+           
+        }*/
+>>>>>>> update1
 
 
 

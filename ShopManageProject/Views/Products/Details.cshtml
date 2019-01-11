@@ -8,7 +8,11 @@
 
 
 <div class="container">
+<<<<<<< HEAD
     <h2 style="font-size:2.5vw"> <a href="~/Products/Filter/@Model.ProductCategory.ProductCategoryId">@Html.DisplayFor(model => model.ProductCategory.Name)</a> > <a href="#">@Html.DisplayFor(model => model.Name)</a> [@Html.DisplayFor(model => model.Code)]</h2>
+=======
+    <h2 style="font-size:2vw"> <a href="~/Products/Filter/@Model.ProductCategory.ProductCategoryId">@Html.DisplayFor(model => model.ProductCategory.Name)</a> > <a href="#">@Html.DisplayFor(model => model.Name)</a> [@Html.DisplayFor(model => model.Code)]</h2>
+>>>>>>> update1
     <div class="col-lg-3 col-md-3">
         <img src="@Html.DisplayFor(model => model.Image)" width=380 />
     </div>
@@ -56,6 +60,7 @@
                 else
                 {
                     <div>
+<<<<<<< HEAD
                         @if (Session["count"] != null)
                         {
                             <input type="number" id="_quantity" class="count alert-success" value="@Session["count"]" min="1" max=" @Html.DisplayFor(model => model.Quanlity)" style="height:20px" />
@@ -65,6 +70,9 @@
                             <input type="number" id="_quantity" class="count alert-success" value="1" min="1" max=" @Html.DisplayFor(model => model.Quanlity)" style="height:20px" />
                         }
 
+=======
+                        <input type="number" id="_quantity" class="count alert-success" value="@Html.DisplayFor(model => model.Quanlity)" min="1" max=" @Html.DisplayFor(model => model.Quanlity)" style="height:20px" />
+>>>>>>> update1
                         <strong style="color:red"> @Html.DisplayFor(model => model.Quanlity) </strong>Sản phẩm có sẵn
                     </div>}
             </dd>

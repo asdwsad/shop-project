@@ -13,7 +13,11 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+<<<<<<< HEAD
     <div class="navbar navbar-default  " style="background-image:url(/img/bg/navbar.jpg);margin-top:-51px">
+=======
+    <div class="navbar navbar-default navbar-fixed-top " style="background-image:url(/img/bg/navbar.jpg)">
+>>>>>>> update1
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,6 +33,29 @@
                 <a href="~/Products/Index"><img src="~/img/logo/logo.gif" width="120" height="68" /></a>
                 @if (Session["UserID"] != null)
                 {
+<<<<<<< HEAD
+=======
+                    @*if (Session["count"] != null && Session["product"] != null)
+                        {
+                            <label class="navbar-fixed-bottom" style="margin-left:20px;margin-bottom:25px;font-size:14px">
+                                <a href="~/Cart/Index" style="color:cyan">
+                                    <mark style="color:white ;background-color:red">
+                                        Bạn có <strong>@Session["count"].ToString()</strong> Sản Phẩm<strong style="color:yellow"> @Session["product"].ToString()</strong> Trong Giỏ
+                                    </mark>
+                                </a>
+                            </label>
+                        }
+                        else
+                        {
+                            <label class="navbar-fixed-bottom" style="margin-left:20px;font-size:14px">
+                                <mark style="color:white ;background-color:red">
+                                    Bạn có <strong>0</strong> Sản Phẩm Trong Giỏ
+                                </mark>
+                            </label>
+                        }*@
+
+                    
+>>>>>>> update1
                     <ul class="nav navbar-nav navbar-right">
                         <li> <a href="~/Users/Details/@Session["UserID"].ToString()" style="color:cyan"><span class="glyphicon glyphicon-user"></span>Hi @Session["Name"].ToString()</a></li>
 
@@ -39,6 +66,11 @@
                         }
                         else
                         {
+<<<<<<< HEAD
+=======
+                            //count += int.Parse(Session["count"].ToString());
+                            //Session["count"] = count;
+>>>>>>> update1
 
                             <li><a href="~/Cart/Index" style="color:cyan">Giỏ Hàng <sup style="border-radius:10px;background-color:red;font-size:17px">@Session["count"].ToString()</sup></a></li>
                         }
