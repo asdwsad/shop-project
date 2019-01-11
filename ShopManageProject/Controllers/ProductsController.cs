@@ -88,13 +88,13 @@ namespace ShopManageProject.Controllers
         public ActionResult Search(string SearchTerm, int? page)
         {
             Session.Remove("search");
-            Session["search"] = SearchTerm;
+            Session["search"] = SearchTerm.Trim();
 
             var productCategory = productCategoryService.ListProductCategory();
 
             ViewData["category"] = productCategory;
 
-            var products = productsService.Search(SearchTerm);
+            var products = productsService.Search(SearchTerm.Trim());
             Session["countSearch"] = products.Count();
             int pageNumber = (page ?? 1);
             products = products.ToList().ToPagedList(pageNumber, 8);
