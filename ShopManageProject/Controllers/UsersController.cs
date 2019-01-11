@@ -7,13 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ShopManageProject.Models;
+using ShopManageProject.Service;
 
 namespace ShopManageProject.Controllers
 {
     public class UsersController : Controller
     {
         private ShopManageDBEntities db = new ShopManageDBEntities();
-
+        LoginService loginService = new LoginService();
         // GET: Users
         public ActionResult Index()
         {
@@ -58,10 +59,18 @@ namespace ShopManageProject.Controllers
             {
                 users.Name = users.Name.Trim();
                 users.Password = users.Password.Trim();
+                users.Address = users.Address.Trim();
+                users.Email = users.Email.Trim();
                 users.CreateDate = DateTime.Now;
-                users.GroupId = "12345";
-                db.Users.Add(users);
-                db.SaveChanges();
+                // set group id for user
+                foreach (var item in loginService.group())
+                {
+                    if (item.Name == "User")
+                    {
+                        users.GroupId = item.GroupId;
+                    }
+                }
+                    loginService.createUser(users);
                 return RedirectToAction("Index");
             }
 
@@ -95,13 +104,18 @@ namespace ShopManageProject.Controllers
             if (ModelState.IsValid)
             {
                 users.CreateDate = DateTime.Now;
-                users.GroupId = "12345";
-                db.Entry(users).State = EntityState.Modified;
-                db.SaveChanges();
-                if(Session["GroupID"] == null || !Session["GroupID"].ToString().Equals("11111"))
+                foreach (var item in loginService.group())
                 {
-                    return RedirectToAction("ProductList", "Admin");
+                    if (item.Name == "User")
+                    {
+                        users.GroupId = item.GroupId;
+                    }
                 }
+                loginService.editUser(users);
+                //if(Session["GroupID"] == null || !Session["GroupID"].ToString().Equals("11111"))
+                //{
+                //    return RedirectToAction("ProductList", "Admin");
+                //}
                 return RedirectToAction("Index","Products");
             }
             ViewBag.GroupId = new SelectList(db.UserGroup, "GroupId", "Name", users.GroupId);

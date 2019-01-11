@@ -33,33 +33,48 @@ namespace ShopManageProject.Controllers
         {
             var user = loginService.Login(u);
             bool checkLogin = loginService.CheckLogin(u);
-            
-                if (checkLogin && ModelState.IsValid)
-                {
-                    //  ID = user.UserId;
-                    Session["UserID"] = user.UserId;
-                    Session["Name"] = user.Name;
-                    Session["GroupID"] = user.GroupId;
-                    if (Session["Productid"] != null)
-                    {
-                        return RedirectToAction("Details", "Products", new { id = int.Parse(Session["ProductId"].ToString()) });
-                    }
-                    if (user.GroupId == "11111")
 
-                    {
-                        //Session["GroupID"] = user.GroupId;
-                        return RedirectToAction("ProductList", "Admin");
-                    }
-                    return RedirectToAction("Index", "Products");
-                }
-                else
+            if (checkLogin && ModelState.IsValid)
+            {
+                
+                Session["UserID"] = user.UserId;
+                Session["Name"] = user.Name;
+                Session["GroupID"] = user.GroupId;
+                if (Session["Productid"] != null)
                 {
-                    ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng");
+                    return RedirectToAction("Details", "Products", new { id = int.Parse(Session["ProductId"].ToString()) });
                 }
-            
-           
+                // check user group
+                foreach (var item in loginService.group())
+                {
+                    if (item.Name == user.UserGroup.Name)
+                    {
+                        if (item.Name == "Admin")
+                        {
+                            return RedirectToAction("ProductList", "Admin");
+                        }
+                        else if (item.Name == "User")
+                        {
+                            return RedirectToAction("Index", "Products");
+                        }
+                    }
+                }
 
-            return View(u);
+
+                //if (user.GroupId == "11111")
+
+                //    {
+                //        //Session["GroupID"] = user.GroupId;
+                //        
+                //    }
+
+            }
+            else
+            {
+                ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng");
+            }
+
+            return View();
         }
     }
 }
