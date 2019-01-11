@@ -27,7 +27,7 @@
                 @if (Session["UserID"] != null)
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li> <a href="#" style="color:cyan"><span class="glyphicon glyphicon-user"></span>Hi @Session["Name"].ToString()</a></li>
+                        <li> <a href="~/Users/Details/@Session["UserID"].ToString()" style="color:cyan"><span class="glyphicon glyphicon-user"></span>Hi @Session["Name"].ToString()</a></li>
 
                         <li><a href="~/Login/Login" style="color:cyan">Logout</a></li>
 
