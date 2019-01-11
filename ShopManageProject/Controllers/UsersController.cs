@@ -91,7 +91,11 @@ namespace ShopManageProject.Controllers
                 return HttpNotFound();
             }
             ViewBag.GroupId = new SelectList(db.UserGroup, "GroupId", "Name", users.GroupId);
-            return View(users);
+            if (Session["UserID"] != null && int.Parse(Session["UserID"].ToString()) == id)
+            {
+                return View(users);
+            }
+            return RedirectToAction("Login", "Login");
         }
 
         // POST: Users/Edit/5
@@ -99,24 +103,30 @@ namespace ShopManageProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,UserName,Password,,ConfirmPassword,GroupId,Name,Address,Email,Phone,CreateDate,Status")] Users users)
+        public ActionResult Edit([Bind(Include = "UserId,GroupId,UserName,Password,,ConfirmPassword,GroupId,Name,Address,Email,Phone,CreateDate,Status")] Users users)
         {
             if (ModelState.IsValid)
             {
                 users.CreateDate = DateTime.Now;
                 foreach (var item in loginService.group())
                 {
-                    if (item.Name == "User")
+                    if (item.Name == "User"&& users.GroupId==item.GroupId)
                     {
                         users.GroupId = item.GroupId;
                     }
+
+                    if (item.Name == "Admin" && users.GroupId == item.GroupId)
+                    {
+                        users.GroupId = item.GroupId;
+                    }
+
                 }
                 loginService.editUser(users);
                 //if(Session["GroupID"] == null || !Session["GroupID"].ToString().Equals("11111"))
                 //{
                 //    return RedirectToAction("ProductList", "Admin");
                 //}
-                return RedirectToAction("Index","Products");
+                return RedirectToAction("Details","Users",new { id=users.UserId});
             }
             ViewBag.GroupId = new SelectList(db.UserGroup, "GroupId", "Name", users.GroupId);
             return View(users);
