@@ -17,7 +17,7 @@ namespace ShopManageProject.Controllers
 {
     public class ProductsController : Controller
     {
-
+        //Get
         private ShopManageDBEntities db = new ShopManageDBEntities();
         private ProductsService productsService = new ProductsService();
         private ProductCategoryService productCategoryService = new ProductCategoryService();
@@ -86,7 +86,7 @@ namespace ShopManageProject.Controllers
 
         [HttpGet]
         public ActionResult Search(string SearchTerm, int? page)
-        {
+        { //get search
             Session.Remove("search");
             Session["search"] = SearchTerm.Trim();
 
