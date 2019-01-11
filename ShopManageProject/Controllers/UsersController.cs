@@ -56,7 +56,8 @@ namespace ShopManageProject.Controllers
         {
             if (ModelState.IsValid)
             {
-               //aaaaa
+                users.Name = users.Name.Trim();
+                users.Password = users.Password.Trim();
                 users.CreateDate = DateTime.Now;
                 users.GroupId = "12345";
                 db.Users.Add(users);
