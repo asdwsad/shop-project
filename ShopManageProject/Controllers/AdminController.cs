@@ -23,7 +23,7 @@ namespace ShopManageProject.Controllers
         // GET: Admin
         public ActionResult ProductList(int? page)
         {
-            if (Session["Name"] == null||!Session["Name"].ToString().Equals("dat"))
+            if (Session["GroupID"] == null||!Session["GroupID"].ToString().Equals("11111"))
             {
                 return RedirectToAction("Login", "Login");
             }

@@ -39,7 +39,7 @@ namespace ShopManageProject.Controllers
                 //  ID = user.UserId;
                 Session["UserID"] = user.UserId;
                 Session["Name"] = user.Name;
-                
+                Session["GroupID"] = user.GroupId;
                 if (Session["Productid"] != null)
                 {
                     return RedirectToAction("Details", "Products", new { id = int.Parse(Session["ProductId"].ToString())});
