@@ -11,11 +11,14 @@ namespace ShopManageProject.Service
         UserDAO userDAO = new UserDAO();
         public bool CheckLogin(UsersLogin u)
         {
-            if (userDAO.Login(u)!=null)
+            if (userDAO.Login(u) != null)
             {
                 return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
         public Users Login(UsersLogin u)

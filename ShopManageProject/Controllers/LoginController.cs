@@ -33,29 +33,31 @@ namespace ShopManageProject.Controllers
         {
             var user = loginService.Login(u);
             bool checkLogin = loginService.CheckLogin(u);
-
-            if (checkLogin && ModelState.IsValid)
-            {
-                //  ID = user.UserId;
-                Session["UserID"] = user.UserId;
-                Session["Name"] = user.Name;
-                Session["GroupID"] = user.GroupId;
-                if (Session["Productid"] != null)
+            
+                if (checkLogin && ModelState.IsValid)
                 {
-                    return RedirectToAction("Details", "Products", new { id = int.Parse(Session["ProductId"].ToString())});
-                }
-                if (user.GroupId == "11111")
+                    //  ID = user.UserId;
+                    Session["UserID"] = user.UserId;
+                    Session["Name"] = user.Name;
+                    Session["GroupID"] = user.GroupId;
+                    if (Session["Productid"] != null)
+                    {
+                        return RedirectToAction("Details", "Products", new { id = int.Parse(Session["ProductId"].ToString()) });
+                    }
+                    if (user.GroupId == "11111")
 
-                {
-                    //Session["GroupID"] = user.GroupId;
-                    return RedirectToAction("ProductList", "Admin");
+                    {
+                        //Session["GroupID"] = user.GroupId;
+                        return RedirectToAction("ProductList", "Admin");
+                    }
+                    return RedirectToAction("Index", "Products");
                 }
-                return RedirectToAction("Index", "Products");
-            }
-            else
-            {
-                ModelState.AddModelError("", "Username or password is not correct!");
-            }
+                else
+                {
+                    ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng");
+                }
+            
+           
 
             return View(u);
         }
