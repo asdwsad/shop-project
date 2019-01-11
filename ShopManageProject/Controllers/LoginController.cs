@@ -61,15 +61,10 @@ namespace ShopManageProject.Controllers
                 }
 
 
-                //if (user.GroupId == "11111")
-
-                //    {
-                //        //Session["GroupID"] = user.GroupId;
-                //        
-                //    }
+              
 
             }
-            else
+            else if(!checkLogin && ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng");
             }

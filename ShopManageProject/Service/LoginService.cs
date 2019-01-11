@@ -26,10 +26,7 @@ namespace ShopManageProject.Service
         //    var us = userDAO.Login(u);
         //    if (us != null)
         //    {
-        //        if (us.UserName.Equals(u.UserName) && !us.Password.Equals(u.Password))
-        //        {
-        //            return 0;
-        //        }
+                
         //        return 1;
         //    }
 
