@@ -9,6 +9,7 @@ namespace ShopManageProject.Controllers
 {
     public class CartController : Controller
     {
+       public static int count;
         // GET: Cart
         private string cartSession = "cart";
         public ActionResult Index()
@@ -27,7 +28,7 @@ namespace ShopManageProject.Controllers
         public ActionResult deleteItem(long id)
         {
             Session.Remove("count");
-            Session.Remove("product");
+            
 
             var cart = (List<CartItem>)Session[cartSession];
 
@@ -36,7 +37,7 @@ namespace ShopManageProject.Controllers
             foreach (var item in cart)
             {
                 Session["count"] = item.quantity;
-                Session["product"] = item.Product.Name;
+                
             }
 
 
@@ -46,7 +47,7 @@ namespace ShopManageProject.Controllers
         public ActionResult deleteAllItem()
         {
             Session.Remove("count");
-            Session.Remove("product");
+            count = 0;
             Session.Remove(cartSession);
 
             return RedirectToAction("Index");
@@ -57,7 +58,7 @@ namespace ShopManageProject.Controllers
             ProductsDAO pd = new ProductsDAO();
             var product = pd.details(ProductId);
 
-            Session["count"] = Quantity;
+            //Session["count"] = Quantity;
 
 
             if(Session["UserID"] == null)
@@ -76,8 +77,8 @@ namespace ShopManageProject.Controllers
                         if (item.Product.ProductId == ProductId)
                         {
                             item.quantity += Quantity;
-                            Session["count"] = item.quantity;
-                            Session["product"] = item.Product.Name;
+                            count += Quantity;
+                            
                         }
 
                     }
@@ -87,7 +88,9 @@ namespace ShopManageProject.Controllers
                     var item = new CartItem();
                     item.Product = product;
                     item.quantity = Quantity;
-                    Session["product"] = item.Product.Name;
+
+                    count += Quantity;
+
                     list.Add(item);
                 }
                 Session[cartSession] = list;
@@ -97,19 +100,23 @@ namespace ShopManageProject.Controllers
                 var item = new CartItem();
                 item.Product = product;
                 item.quantity = Quantity;
-                Session["product"] = item.Product.Name;
+
+                count += Quantity;
+
                 var list = new List<CartItem>();
                 list.Add(item);
                 Session[cartSession] = list;
             }
 
 
+            //count += int .Parse(Session["count"].ToString());
 
+            Session["count"] = count;
             if (Session["ProductId"] != null)
             {
                 return RedirectToAction("Details", "Products", new { id = Session["ProductId"].ToString() });
             }
-
+            
 
             return RedirectToAction("Index");
         }

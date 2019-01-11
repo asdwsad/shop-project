@@ -18,10 +18,15 @@ namespace ShopManageProject.Controllers
         {
             Session.Remove("UserID");
             Session.Remove("Name");
+            Session.Remove("GroupID");
             //Session.RemoveAll();
             return View();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="u"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(UsersLogin u)
@@ -34,10 +39,16 @@ namespace ShopManageProject.Controllers
                 //  ID = user.UserId;
                 Session["UserID"] = user.UserId;
                 Session["Name"] = user.Name;
-               
+                
                 if (Session["Productid"] != null)
                 {
-                    return RedirectToAction("Details", "Products", new { id = int.Parse(Session["ProductId"].ToString()) });
+                    return RedirectToAction("Details", "Products", new { id = int.Parse(Session["ProductId"].ToString())});
+                }
+                if (user.GroupId == "11111")
+
+                {
+                    //Session["GroupID"] = user.GroupId;
+                    return RedirectToAction("ProductList", "Admin");
                 }
                 return RedirectToAction("Index", "Products");
             }

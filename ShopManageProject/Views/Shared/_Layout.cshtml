@@ -12,8 +12,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style="background-image:url(/img/bg/14.png) ">
-    <div class="navbar navbar-default navbar-fixed-top " style="background-image:url(/img/bg/navbar.jpg)">
+<body>
+    <div class="navbar navbar-default  " style="background-image:url(/img/bg/navbar.jpg);margin-top:-51px">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,38 +26,25 @@
 
             <div class="navbar-collapse collapse">
 
-                <img src="~/img/logo/logo.gif" width="120" height="68" />
+                <a href="~/Products/Index"><img src="~/img/logo/logo.gif" width="120" height="68" /></a>
                 @if (Session["UserID"] != null)
                 {
-                    if (Session["count"] != null && Session["product"] != null)
-                    {
-                        <label class="navbar-fixed-bottom" style="margin-left:20px;margin-bottom:25px;font-size:14px">
-                            <a href="~/Cart/Index" style="color:cyan">
-                                <mark style="color:white ;background-color:red">
-                                    Bạn có <strong>@Session["count"].ToString()</strong> Sản Phẩm<strong style="color:yellow"> @Session["product"].ToString()</strong> Trong Giỏ
-                                </mark>
-                            </a>
-                        </label>
-                    }
-                    else
-                    {
-                        <label class="navbar-fixed-bottom" style="margin-left:20px;font-size:14px">
-                            <mark style="color:white ;background-color:red">
-                                Bạn có <strong>0</strong> Sản Phẩm Trong Giỏ
-                            </mark>
-                        </label>
-                    }
-
                     <ul class="nav navbar-nav navbar-right">
                         <li> <a href="~/Users/Details/@Session["UserID"].ToString()" style="color:cyan"><span class="glyphicon glyphicon-user"></span>Hi @Session["Name"].ToString()</a></li>
 
                         <li><a href="~/Login/Login" style="color:cyan">Logout</a></li>
+                        @if (Session["count"] == null)
+                        {
+                            <li><a href="~/Cart/Index" style="color:cyan">Giỏ Hàng </a></li>
+                        }
+                        else
+                        {
 
-                        <li><a href="~/Cart/Index" style="color:cyan">Giỏ Hàng</a></li>
-
+                            <li><a href="~/Cart/Index" style="color:cyan">Giỏ Hàng <sup style="border-radius:10px;background-color:red;font-size:17px">@Session["count"].ToString()</sup></a></li>
+                        }
                         <li><a href="~/Orders/GetOrderByUser?userId=@Session["UserID"].ToString()" style="color:cyan">Đơn Hàng</a></li>
                     </ul>
-                    //Session["layout"] = int.Parse(Session["count"].ToString());
+
                 }
                 else
                 {
@@ -81,7 +68,7 @@
                 @using (Html.BeginForm("Search", "Products", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
                 {
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm" name="SearchTerm" value="@ViewBag.SearchTerm" id="search-box">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm" name="SearchTerm" value="@ViewBag.SearchTerm" id="search-box" style="width:180px">
                     </div>
 
                     <div class="form-group">
@@ -91,10 +78,8 @@
 
             </div>
         </div>
-
-
     </div>
-    <br /><br /><br /><br />
+    
 
 
     <div class="container body-content">

@@ -22,15 +22,25 @@ namespace ShopManageProject.Models
         }
     
         public long ProductId { get; set; }
+        [Required]
+
         public string Name { get; set; }
+        [Required]
+        [MaxLength(50)]
         public string Code { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public string Image { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0,0đ}")]
+        [Required]
+        [DisplayFormat( DataFormatString = "{0:0,0đ}")]
         public Nullable<decimal> Price { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0,0đ}")]
+        [Required]
+        [DisplayFormat( DataFormatString = "{0:0,0đ}")]
         public Nullable<decimal> PromotionPrice { get; set; }
+        [Required]
         public Nullable<int> Quanlity { get; set; }
+
         public Nullable<long> ProductCategoryId { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]

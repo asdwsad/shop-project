@@ -52,6 +52,7 @@ namespace ShopManageProject.Controllers
         {
             if (ModelState.IsValid)
             {
+               //aaaaa
                 users.CreateDate = DateTime.Now;
                 users.GroupId = "12345";
                 db.Users.Add(users);
@@ -92,6 +93,10 @@ namespace ShopManageProject.Controllers
                 users.GroupId = "12345";
                 db.Entry(users).State = EntityState.Modified;
                 db.SaveChanges();
+                if(Session["GroupID"] == null || !Session["GroupID"].ToString().Equals("11111"))
+                {
+                    return RedirectToAction("ProductList", "Admin");
+                }
                 return RedirectToAction("Index","Products");
             }
             ViewBag.GroupId = new SelectList(db.UserGroup, "GroupId", "Name", users.GroupId);

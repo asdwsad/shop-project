@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-default  " style="background-image:url(/img/bg/navbar.jpg);margin-top:-51px">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
+            <div class="navbar-collapse collapse">
+
+                <a href="~/Admin/ProductList"> <img src="~/img/logo/logo.gif" width="120" height="68" /></a>
+
+                @if (Session["UserID"] != null)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li> <a href="#" style="color:cyan"><span class="glyphicon glyphicon-user"></span>Hi @Session["Name"].ToString()</a></li>
+
+                        <li><a href="~/Login/Login" style="color:cyan">Logout</a></li>
+
+                    </ul>
+
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="~/Users/Create" style="color:cyan"><span class="glyphicon glyphicon-user "></span> Sign Up</a></li>
+
+                        <li><a href="~/Login/Login" style="color:cyan">Login</a></li>
+                    </ul>
+                }
+
+            </div>
+            <div class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav na">
+                    <li>
+
+                        <a href="~/Admin/ProductList" style="color:cyan">Quản lý Sản Phẩm</a>
+
+                    </li>
+                    <li><a href="~/Admin/" style="color:cyan">Quản lý Đơn hàng</a></li>
+                    <li><a href="~/Products/Index" style="color:cyan">Sản Phẩm</a></li>
+                   
+                </ul>
+
+                @using (Html.BeginForm("Search", "Products", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
+                {
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm" name="SearchTerm" value="@ViewBag.SearchTerm" id="search-box" style="width:180px">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

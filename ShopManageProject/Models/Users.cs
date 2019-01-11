@@ -15,9 +15,9 @@ namespace ShopManageProject.Models
 
     public partial class UsersLogin
     {
-        
+       
         public string UserName { get; set; }
-     
+        
         public string Password { get; set; }
     }
 

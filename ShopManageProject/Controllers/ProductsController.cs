@@ -99,98 +99,15 @@ namespace ShopManageProject.Controllers
             int pageNumber = (page ?? 1);
             products = products.ToList().ToPagedList(pageNumber, 8);
 
-           
+
 
             ViewBag.SearchTerm = SearchTerm;
             ViewData["searchProduct"] = products;
 
             return View(products);
         }
-
-       
-        public ActionResult Create()
-        {
-            //ViewBag.ProductCategoryId = new SelectList(db.ProductCategory, "ProductCategoryId", "Name");
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,Name,Code,Description,Image,Price,PromotionPrice,Quanlity,ProductCategoryId,CreateDate")] Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                productsService.CreateProduct(product);
-                return RedirectToAction("Index");
-            }
-
-            //ViewBag.ProductCategoryId = new SelectList(db.ProductCategory, "ProductCategoryId", "Name", product.ProductCategoryId);
-            return View(product);
-        }
-
-        // GET: Products/Edit/5
-        public ActionResult Edit(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.Product.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            //ViewBag.ProductCategoryId = new SelectList(db.ProductCategory, "ProductCategoryId", "Name", product.ProductCategoryId);
-            return View(product);
-        }
-
-        // POST: Products/Edit/5
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,Name,Code,Description,Image,Price,PromotionPrice,Quanlity,ProductCategoryId,CreateDate")] Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                productsService.editProduct(product);
-                return RedirectToAction("Index");
-            }
-            //ViewBag.ProductCategoryId = new SelectList(db.ProductCategory, "ProductCategoryId", "Name", product.ProductCategoryId);
-            return View(product);
-        }
-
-        // GET: Products/Delete/5
-        public ActionResult Delete(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.Product.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
-
-        // POST: Products/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
-        {
-
-            productsService.deleteProduct(id);
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
+
+       
+       
