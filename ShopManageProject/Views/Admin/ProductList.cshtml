@@ -16,7 +16,7 @@
 
 <div class="container" id="productList">
     <h2>Quản lý sản phẩm</h2>
-    <input type="button" value="Create" class="btn btn-success" id="load" />
+    <input type="button" value="Tạo mới" class="btn btn-success" id="load" />
     <br />  
     <div class="container" id="content"></div>
 
@@ -81,7 +81,7 @@
                 </td>
                 <td>
                     <button type="button" class="btn btn-warning  a1" id="@item.ProductId">Sửa</button> |
-                    <button type="button" class="btn btn-danger del1" data-toggle="modal" data-target="#myModal" id="@item.ProductId">Delete</button>
+                    <button type="button" class="btn btn-danger del1" data-toggle="modal" data-target="#myModal" id="@item.ProductId">Xóa</button>
 
                 </td>
             </tr>
@@ -111,13 +111,13 @@
 
             $('#load').click(function (e) {
                 e.preventDefault();
-                $("#content").animate({
-                    width: "300px",
-                    height: "300px",
-                    marginLeft: "5px",
-                    borderWidth: "10px",
-                    opacity: 1
-                });
+                //$("#content").animate({
+                //    width: "300px",
+                //    height: "300px",
+                //    marginLeft: "5px",
+                //    borderWidth: "10px",
+                //    opacity: 1
+                //});
 
                 $('#content').load('CreateProduct #content');
             });
