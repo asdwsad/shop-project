@@ -33,7 +33,11 @@ namespace ShopManageProject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(users);
+            if (Session["UserID"] != null&&int.Parse(Session["UserID"].ToString()) == id)
+            {
+               return View(users);
+            }
+            return RedirectToAction("Login", "Login");
         }
 
         // GET: Users/Create
