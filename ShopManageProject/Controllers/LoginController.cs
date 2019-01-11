@@ -40,10 +40,7 @@ namespace ShopManageProject.Controllers
                 Session["UserID"] = user.UserId;
                 Session["Name"] = user.Name;
                 Session["GroupID"] = user.GroupId;
-                if (Session["Productid"] != null)
-                {
-                    return RedirectToAction("Details", "Products", new { id = int.Parse(Session["ProductId"].ToString()) });
-                }
+                
                 // check user group
                 foreach (var item in loginService.group())
                 {
@@ -55,14 +52,14 @@ namespace ShopManageProject.Controllers
                         }
                         else if (item.Name == "User")
                         {
+                            if (Session["Productid"] != null)
+                            {
+                                return RedirectToAction("Details", "Products", new { id = int.Parse(Session["ProductId"].ToString())});
+                            }
                             return RedirectToAction("Index", "Products");
                         }
                     }
                 }
-
-
-              
-
             }
             else if(!checkLogin && ModelState.IsValid)
             {

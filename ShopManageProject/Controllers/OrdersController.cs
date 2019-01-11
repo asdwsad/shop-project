@@ -26,13 +26,26 @@ namespace ShopManageProject.Controllers
 
             orders = orders.ToList().ToPagedList(pageNumber, 10);
 
-            return View(orders);
+            
+            if (Session["UserID"] != null && int.Parse(Session["UserID"].ToString()) == userId)
+            {
+                return View(orders);
+               
+            }
+            return RedirectToAction("Login", "Login");
         }
 
         public ActionResult GetOrderDetail(long orderId)
         {
             var orderDetail = orderService.getListOrderDetail(orderId);
-            return View(orderDetail.ToList());
+            if (Session["UserID"] != null)
+            {
+                return View(orderDetail.ToList());
+                
+
+            }
+            return RedirectToAction("Login", "Login");
+            
         }
         // GET: Orders/Details/5
         public ActionResult Details(long? id)
@@ -46,8 +59,14 @@ namespace ShopManageProject.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (Session["UserID"] != null)
+            {
+                return View(orders);
+
+            }
+            return RedirectToAction("Login", "Login");
             
-            return View(orders);
         }
 
         // GET: Orders/Create
@@ -119,7 +138,7 @@ namespace ShopManageProject.Controllers
                 if (ModelState.IsValid)
                 {
                     orderService.updateOrder(orderId);
-                    return RedirectToAction("GetOrderByUser", new { userId = Session["UserID"].ToString() });
+                    return RedirectToAction("GetOrderByUser", new { userId = Session["UserID"].ToString()});
                 }
             }
             catch
@@ -141,8 +160,13 @@ namespace ShopManageProject.Controllers
             {
                 return HttpNotFound();
             }
-          
-            return View(orders);
+
+            if (Session["UserID"] != null )
+            {
+                return View(orders);
+            }
+            return RedirectToAction("Login", "Login");
+           
         }
 
         // POST: Orders/Edit/5

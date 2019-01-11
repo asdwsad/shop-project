@@ -14,6 +14,7 @@ namespace ShopManageProject.Controllers
         private string cartSession = "cart";
         public ActionResult Index()
         {
+
             var cart = Session[cartSession];
             var list = new List<CartItem>();
             if (cart != null)
@@ -21,8 +22,12 @@ namespace ShopManageProject.Controllers
                 list = (List<CartItem>)cart;
 
             }
-
-            return View(list);
+            if (Session["UserID"] != null)
+            {
+                return View(list);
+            }
+            return RedirectToAction("Login", "Login");
+           
         }
 
         public ActionResult deleteItem(long id)
@@ -40,8 +45,12 @@ namespace ShopManageProject.Controllers
                 
             }
 
-
-            return RedirectToAction("Index");
+            if (Session["UserID"] != null)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Login", "Login");
+            
         }
 
         public ActionResult deleteAllItem()
@@ -49,8 +58,12 @@ namespace ShopManageProject.Controllers
             Session.Remove("count");
             count = 0;
             Session.Remove(cartSession);
-
-            return RedirectToAction("Index");
+            if (Session["UserID"] != null)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Login", "Login");
+            
         }
 
         public ActionResult AddItem(long ProductId, int Quantity)
@@ -116,9 +129,12 @@ namespace ShopManageProject.Controllers
             {
                 return RedirectToAction("Details", "Products", new { id = Session["ProductId"].ToString() });
             }
-            
 
-            return RedirectToAction("Index");
+            if (Session["UserID"] != null)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Login", "Login");
         }
     }
 }

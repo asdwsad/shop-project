@@ -33,6 +33,7 @@ namespace ShopManageProject.Controllers
 
             product = product.ToList().ToPagedList(pageNumber, 5);
             ViewData["productList"] = product;
+
             return View(product);
         }
 
@@ -47,6 +48,11 @@ namespace ShopManageProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateProduct([Bind(Include = "ProductId,Name,Code,Description,Image,Price,PromotionPrice,Quanlity,ProductCategoryId,CreateDate")] Product product)
         {
+            if (Session["GroupID"] == null || !Session["GroupID"].ToString().Equals("11111"))
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (ModelState.IsValid)
             {
                 product.CreateDate = DateTime.Now;
@@ -61,6 +67,10 @@ namespace ShopManageProject.Controllers
         // GET: Products/Edit/5
         public ActionResult EditProduct(long? id)
         {
+            if (Session["GroupID"] == null || !Session["GroupID"].ToString().Equals("11111"))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -95,6 +105,10 @@ namespace ShopManageProject.Controllers
         // GET: Products/Delete/5
         public ActionResult DeleteProduct(long? id)
         {
+            if (Session["GroupID"] == null || !Session["GroupID"].ToString().Equals("11111"))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
