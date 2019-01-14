@@ -66,10 +66,10 @@ namespace ShopManageProject.Controllers
                         }
                         else if (item.Name == "User")
                         {
-                            if (Session["Productid"] != null)
-                            {
-                                return RedirectToAction("Details", "Products", new { id = int.Parse(Session["ProductId"].ToString())});
-                            }
+                            //if (Session["Productid"] != null)
+                            //{
+                            //    return RedirectToAction("Details", "Products", new { id = int.Parse(Session["ProductId"].ToString())});
+                            //}
                             return RedirectToAction("Index", "Products");
                         }
                     }
