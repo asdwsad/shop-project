@@ -4,14 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết</h2>
 
 <div>
-    <h4>Users</h4>
+    <h4>Tài khoản</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.UserName)
+            Tên tài khoản
         </dt>
 
         <dd>
@@ -19,15 +19,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+            Mật khẩu
 
         <dd>
             @Html.HiddenFor(model => model.Password)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Tên
         </dt>
 
         <dd>
@@ -35,7 +34,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Address)
+           Địa chỉ
         </dt>
 
         <dd>
@@ -43,7 +42,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </dt>
 
         <dd>
@@ -51,7 +50,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Phone)
+           Số điện thoại
         </dt>
 
         <dd>
@@ -59,23 +58,23 @@
         </dd>
 
         <dt>
-            Updated Date
+           Ngày cập nhật
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.CreateDate)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Status)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Status)
-        </dd>
+        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.UserGroup.Name)
+           Quyền
         </dt>
 
         <dd>
@@ -85,6 +84,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
-    @Html.ActionLink("Back to List", "Index","Products")
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.UserId }) |
+    @Html.ActionLink("Về trang chủ", "Index","Products")
 </p>
