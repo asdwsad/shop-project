@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -63,7 +63,8 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-search"></i></button>
+                        <button type="submit" class="btn btn-default hidden-xs" id="search"><i class="glyphicon glyphicon-search"></i></button>
+
                     </div>
                 }
 
@@ -80,6 +81,17 @@
             <p>&copy; @DateTime.Now.Year - My Application</p>
         </footer>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#search').click(function () {
+                if ($('#search-box').val().toString().trim().length == 0) {
+                    alert('Bạn chưa nhập từ khóa tìm kiếm');
+                    return false;
+                }
+            });
+        });
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
