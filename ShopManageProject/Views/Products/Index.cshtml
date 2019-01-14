@@ -6,7 +6,12 @@
 }
 
 
-@if (Session["GroupName"].ToString().Equals("Admin"))
+@if(Session["GroupName"]==null)
+{
+    ViewBag.Title = "Home page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else if (Session["GroupName"].ToString().Equals("Admin"))
 {
     ViewBag.Title = "Home page";
     Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
@@ -16,6 +21,9 @@ else if (Session["GroupName"].ToString().Equals("User"))
     ViewBag.Title = "Home page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+
 
 @{
     ViewBag.Title = "Index";

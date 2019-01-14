@@ -7,16 +7,22 @@
     IEnumerable<ShopManageProject.Models.ProductCategory> Category = ViewData["category"] as IEnumerable<ShopManageProject.Models.ProductCategory>;
 }
 
-@if (Session["GroupName"].ToString().Equals("Admin"))
+@if (Session["GroupName"] == null)
 {
-    ViewBag.Title = "Search";
+    ViewBag.Title = "Tìm kiếm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else if (Session["GroupName"].ToString().Equals("Admin"))
+{
+    ViewBag.Title = "Tìm kiếm";
     Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
 }
 else if (Session["GroupName"].ToString().Equals("User"))
 {
-    ViewBag.Title = "Search";
+    ViewBag.Title = "Tìm kiếm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <h4>Kết Quả Của "@Session["search"].ToString()" : <strong style="color:red">@Session["countSearch"].ToString()</strong> Kết Quả</h4>
 

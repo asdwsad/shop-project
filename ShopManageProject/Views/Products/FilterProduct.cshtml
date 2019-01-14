@@ -6,17 +6,21 @@
     IEnumerable<ShopManageProject.Models.Product> FilterProduct = ViewData["e"] as IEnumerable<ShopManageProject.Models.Product>;
     IEnumerable<ShopManageProject.Models.Product> SearchProduct = ViewData["d"] as IEnumerable<ShopManageProject.Models.Product>;
 }
-@if (Session["GroupName"].ToString().Equals("Admin"))
+@if (Session["GroupName"] == null)
 {
-    ViewBag.Title = "Filter Product";
+    ViewBag.Title = "Filter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else if (Session["GroupName"].ToString().Equals("Admin"))
+{
+    ViewBag.Title = "Filter";
     Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
 }
 else if (Session["GroupName"].ToString().Equals("User"))
 {
-    ViewBag.Title = "Filter Product";
+    ViewBag.Title = "Filter";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>FilterProduct</h2>
 
 <div class="container">

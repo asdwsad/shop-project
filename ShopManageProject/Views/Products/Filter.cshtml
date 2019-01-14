@@ -3,7 +3,12 @@
 @model PagedList.IPagedList<ShopManageProject.Models.Product>
 
 
-@if (Session["GroupName"].ToString().Equals("Admin"))
+@if (Session["GroupName"] == null)
+{
+    ViewBag.Title = "Filter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else if (Session["GroupName"].ToString().Equals("Admin"))
 {
     ViewBag.Title = "Filter";
     Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";

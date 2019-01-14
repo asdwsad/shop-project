@@ -4,16 +4,21 @@
 {
     ViewBag.Title = "AdminDetails";
     Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
-}else if(Session["GroupName"].ToString().Equals("User"))
+}
+else if (Session["GroupName"].ToString().Equals("User"))
+{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else
 {
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 @{
-        ViewBag.Title = "Details";
-    }
+    ViewBag.Title = "Details";
+}
 
 <h2>Chi tiết</h2>
 
@@ -31,7 +36,7 @@
 
         <dt style="text-align:left">
             Mật khẩu
-          </dt>
+        </dt>
         <dd>
             @Html.HiddenFor(model => model.Password)
         </dd>
