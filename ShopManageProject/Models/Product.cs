@@ -35,11 +35,11 @@ namespace ShopManageProject.Models
         [MaxLength(250), MinLength(1)]
         public string Image { get; set; }
         [Required]
-        [MaxLength(18), MinLength(1)]
+        //[MaxLength(18), MinLength(1)]
         [DisplayFormat( DataFormatString = "{0:0,0đ}")]
         public Nullable<decimal> Price { get; set; }
         [Required]
-        [MaxLength(18), MinLength(1)]
+        //[MaxLength(18), MinLength(1)]
         [DisplayFormat( DataFormatString = "{0:0,0đ}")]
         public Nullable<decimal> PromotionPrice { get; set; }
         [Required]
