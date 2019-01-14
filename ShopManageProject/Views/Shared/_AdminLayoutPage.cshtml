@@ -77,11 +77,14 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+
+    </div>
+
+    <div class="container">
         <footer>
             <p>&copy; @DateTime.Now.Year - My Application</p>
         </footer>
     </div>
-
     <script>
         $(document).ready(function () {
             $('#search').click(function () {
