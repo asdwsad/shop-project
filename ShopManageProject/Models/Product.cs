@@ -22,23 +22,24 @@ namespace ShopManageProject.Models
         }
     
         public long ProductId { get; set; }
-        [Required]
-        [MaxLength(250),MinLength(1)]
+        [Required(ErrorMessage = "Bạn phải nhập tên sản phẩm")]
+        [StringLength(250, MinimumLength = 5, ErrorMessage = "Tối thiểu 5 ký tự,tối đa 50 ký tự")]
+        
         public string Name { get; set; }
-        [Required]
-        [MaxLength(10), MinLength(1)]
+        [Required(ErrorMessage = "Bạn phải nhập code sản phẩm")]
+        [StringLength(10, MinimumLength = 1, ErrorMessage = "Tối thiểu 5 ký tự,tối đa 50 ký tự")]
         public string Code { get; set; }
-        [Required]
-        [MaxLength(500), MinLength(1)]
+        [Required(ErrorMessage = "Bạn phải nhập mô tả sản phẩm")]
+        [StringLength(500, MinimumLength = 5, ErrorMessage = "Tối thiểu 5 ký tự,tối đa 50 ký tự")]
         public string Description { get; set; }
-        [Required]
-        [MaxLength(250), MinLength(1)]
+        [Required(ErrorMessage = "Bạn phải nhập đường dẫn ảnh")]
+        [StringLength(250, MinimumLength = 5, ErrorMessage = "Tối thiểu 5 ký tự,tối đa 50 ký tự")]
         public string Image { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Bạn phải nhập giá sản phẩm")]
         //[MaxLength(18), MinLength(1)]
         [DisplayFormat( DataFormatString = "{0:0,0đ}")]
         public Nullable<decimal> Price { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Bạn phải nhập giá sản phẩm")]
         //[MaxLength(18), MinLength(1)]
         [DisplayFormat( DataFormatString = "{0:0,0đ}")]
         public Nullable<decimal> PromotionPrice { get; set; }
