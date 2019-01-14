@@ -34,7 +34,11 @@ namespace ShopManageProject.Controllers
         {
             var user = loginService.Login(u);
             bool checkLogin = loginService.CheckLogin(u);
-
+            if (u.Remember)
+            {
+                Session["UserName"] = user.UserName;
+                Session["Password"] = user.Password;
+            }
             if (checkLogin && ModelState.IsValid)
             {
                 

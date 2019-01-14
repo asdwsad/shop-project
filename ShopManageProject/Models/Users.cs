@@ -19,6 +19,8 @@ namespace ShopManageProject.Models
         public string UserName { get; set; }
         [Required(ErrorMessage = "Bạn phải nhập mật khẩu")]
         public string Password { get; set; }
+
+        public bool Remember { get; set; }
     }
 
     public partial class Users
@@ -32,36 +34,39 @@ namespace ShopManageProject.Models
         public long UserId { get; set; }
 
         [Required(ErrorMessage = "Bạn phải nhập tên tài khoản.")]
-        [StringLength(50, MinimumLength = 5)]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Tối thiểu 5 ký tự,tối đa 50 ký tự")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Bạn phải nhập mật khẩu.")]
-        [StringLength(30, MinimumLength = 5)]
+        [StringLength(30, MinimumLength = 5,ErrorMessage ="Tối thiểu 5 ký tự,tối đa 30 ký tự")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Bạn phải nhập mật khẩu.")]
-        [StringLength(30, MinimumLength = 5)]
+        [StringLength(30, MinimumLength = 5, ErrorMessage = "Tối thiểu 5 ký tự,tối đa 30 ký tự")]
         [Compare("Password", ErrorMessage = "Mật khẩu nhập lại không đúng.")]
         public string ConfirmPassword { get; set; }
 
         public string GroupId { get; set; }
         [Required(ErrorMessage = "Bạn phải nhập tên.")]
-        [StringLength(50, MinimumLength = 5)]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Tối thiểu 5 ký tự,tối đa 50 ký tự")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Bạn phải nhập địa chỉ.")]
-        [StringLength(50, MinimumLength = 5)]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Tối thiểu 5 ký tự,tối đa 50 ký tự")]
         public string Address { get; set; }
         [Required(ErrorMessage = "Bạn phải nhập email.")]
-        [StringLength(50, MinimumLength = 5)]
-        [EmailAddress]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Tối thiểu 5 ký tự,tối đa 50 ký tự")]
+        [EmailAddress(ErrorMessage ="Sai định dạng email")]
         public string Email { get; set; }
-        [Phone]
-        [StringLength(30, MinimumLength = 5)]
+        [Phone(ErrorMessage ="Sai định dạng số điện thoại")]
+        [StringLength(30, MinimumLength = 5, ErrorMessage = "Tối thiểu 5 ký tự,tối đa 30 ký tự")]
         [Required(ErrorMessage = "Bạn phải nhập số điện thoại.")]
         public string Phone { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public bool Status { get; set; }
     
+
+        
+
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
         public virtual UserGroup UserGroup { get; set; }
