@@ -31,26 +31,33 @@ namespace ShopManageProject.Models
     
         public long UserId { get; set; }
 
-        [Required]
-        [StringLength(12, MinimumLength = 5)]
+        [Required(ErrorMessage = "Bạn phải nhập tên tài khoản.")]
+        [StringLength(50, MinimumLength = 5)]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Password is required.")]
+        [Required(ErrorMessage = "Bạn phải nhập mật khẩu.")]
+        [StringLength(30, MinimumLength = 5)]
         public string Password { get; set; }
 
-        [Required]
-        [Compare("Password", ErrorMessage = "Password and Confirmation Password must match.")]
+        [Required(ErrorMessage = "Bạn phải nhập mật khẩu.")]
+        [StringLength(30, MinimumLength = 5)]
+        [Compare("Password", ErrorMessage = "Mật khẩu nhập lại không đúng.")]
         public string ConfirmPassword { get; set; }
 
         public string GroupId { get; set; }
-        [Required(ErrorMessage = "Name is required.")]
+        [Required(ErrorMessage = "Bạn phải nhập tên.")]
+        [StringLength(50, MinimumLength = 5)]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Address is required.")]
+        [Required(ErrorMessage = "Bạn phải nhập địa chỉ.")]
+        [StringLength(50, MinimumLength = 5)]
         public string Address { get; set; }
-        [Required(ErrorMessage = "Email is required.")]
+        [Required(ErrorMessage = "Bạn phải nhập email.")]
+        [StringLength(50, MinimumLength = 5)]
         [EmailAddress]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Phone is required.")]
+        [Phone]
+        [StringLength(30, MinimumLength = 5)]
+        [Required(ErrorMessage = "Bạn phải nhập số điện thoại.")]
         public string Phone { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public bool Status { get; set; }
