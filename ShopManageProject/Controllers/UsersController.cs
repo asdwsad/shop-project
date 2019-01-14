@@ -74,6 +74,8 @@ namespace ShopManageProject.Controllers
                 }
 
                 loginService.createUser(users);
+                Session.Remove("UserName");
+                Session.Remove("Password");
                 return RedirectToAction("Login","Login");
             }
 
