@@ -122,9 +122,16 @@ else if (Session["GroupName"].ToString().Equals("User"))
     </div>
 }
 
-<div>
-    @Html.ActionLink("Về trang chủ", "Index", "Products")
-</div>
+    <div>
+        @if (Session["GroupName"].ToString().Equals("Admin"))
+        {
+            @Html.ActionLink("Về trang chủ", "ProductList", "Admin")
+        }
+        else if (Session["GroupName"].ToString().Equals("User"))
+        {
+            @Html.ActionLink("Về trang chủ", "Index", "Products")
+        }
+    </div>
 
 <script>
 
