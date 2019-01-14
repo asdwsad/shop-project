@@ -11,7 +11,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div class="container" id="content">
 
-    @using (Html.BeginForm())
+    <h3>Tạo sản phẩm</h3>
+    @using (Html.BeginForm("CreateProduct","Admin",FormMethod.Post,new { id="form"}))
     {
         @Html.AntiForgeryToken()
 
@@ -97,13 +98,13 @@
             </div>
         </div>
 
-        <div class="form-group col-md-6 col-sm-12">
-            <div class=" col-md-2">
+        <div class="form-group col-md-12 col-sm-12">
+            
                 <input type="submit" value="Thêm" class="btn btn-default" />
-            </div>
-            <div class=" col-md-2">
+
                 <input type="button" value="Clear" class="btn btn-default" id="clear" />
-            </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            
         </div>
 
     }
@@ -118,27 +119,32 @@
 <script>
     $(document).ready(function () {
         $('#list').load('ProductList #productList');
-        //$("#list").animate({
-        //    width: "300px",
-        //    height: "300px",
-        //    marginLeft: "5px",
-        //    borderWidth: "10px",
-        //    opacity: 1
-        //});
-        //$('#load').click(function (e) {
-        //    e.preventDefault();
-        //    $('#content').load('CreateProduct #createForm');
-        //});
     });
 
     $(document).ready(function () {
         $('#clear').click(function () {
-
-            //$('#createForm').load('CreateProduct #createForm');
             $('#name,#code,#des,#image,#price,#pPrice,#quanlity').val('');
         });
 
     });
+
+    $(document).ready(function (){
+
+        var data = $('#form').serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "/Admin/CreateProduct",
+            data: data,
+            success: function (response) {
+                alert("done");
+            }
+
+        })
+    });
+
+
+
 
 
 </script>
