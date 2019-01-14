@@ -5,6 +5,18 @@
     //IEnumerable<ShopManageProject.Models.Product> SearchProduct = ViewData["d"] as IEnumerable<ShopManageProject.Models.Product>;
 }
 
+
+@if (Session["GroupName"].ToString().Equals("Admin"))
+{
+    ViewBag.Title = "Home page";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+else if (Session["GroupName"].ToString().Equals("User"))
+{
+    ViewBag.Title = "Home page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 @{
     ViewBag.Title = "Index";
 }
@@ -21,15 +33,16 @@
             margin-right: 25px;
             background-image: none;
         }
-        a:hover{
-            color:red;
-            text-decoration:none;
-        }
+
+    a:hover {
+        color: red;
+        text-decoration: none;
+    }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 @{ int productCount = 0;}
 <div>
-    
+
     <div class="col-md-2 col-xs-12">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#drop" style="margin-top:-25px;margin-right:-20px">
             <strong style="color:red"> Menu</strong>
@@ -49,7 +62,7 @@
 
                 if (productCount > 0)
                 {
-                    
+
                     <div class="dropdown-submenu btn-group dropdown-menu-right ">
 
                         <a href="/Products/Filter/@item.ProductCategoryId" class="btn btn-secondary" style="width:180px;max-height:50px;background-color:antiquewhite">
@@ -76,7 +89,7 @@
         <br /><br /><br />
     </div>
 
-   
+
     <div class="col-md-1">
 
     </div>
@@ -94,13 +107,13 @@
                                 <div class="d-block w-100"><img src="~/img/slide/slide1.png" class="img-responsive center-block" style="width:1024px;height:auto"></div>
                             </div>
                             <div class="item center-block">
-                                <div class="d-block w-100"><img src="~/img/slide/slide2.png" class="img-responsive center-block"style="width:1024px;height:auto"></div>
+                                <div class="d-block w-100"><img src="~/img/slide/slide2.png" class="img-responsive center-block" style="width:1024px;height:auto"></div>
                             </div>
                             <div class="item center-block">
-                                <div class="d-block w-100"><img src="~/img/slide/slide3.png" class="img-responsive center-block"style="width:1024px;height:auto"></div>
+                                <div class="d-block w-100"><img src="~/img/slide/slide3.png" class="img-responsive center-block" style="width:1024px;height:auto"></div>
                             </div>
                             <div class="item center-block">
-                                <div class="d-block w-100"><img src="~/img/slide/slide4.png" class="img-responsive center-block"style="width:1024px;height:auto"></div>
+                                <div class="d-block w-100"><img src="~/img/slide/slide4.png" class="img-responsive center-block" style="width:1024px;height:auto"></div>
                             </div>
 
                             <!-- add  more items here -->
@@ -132,7 +145,7 @@
             <h3>Có Gì Mới?</h3>
             <div class="row">
                 <div id="a" class="carousel slide" data-ride="carousel" data-interval="2500">
-                    <div class="carousel-inner " >
+                    <div class="carousel-inner ">
 
 
                         @foreach (var item in allProduct)

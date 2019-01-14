@@ -1,9 +1,15 @@
 ﻿@model ShopManageProject.Models.Product
 
-@{
+@if (Session["GroupName"].ToString().Equals("Admin"))
+{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
 }
-
+else if (Session["GroupName"].ToString().Equals("User"))
+{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 
 
@@ -89,8 +95,11 @@
             <dd>
                 @if (Model.Quanlity > 0)
                 {
-                <a class="btn btn-success" id="cart" href="~/Cart/AddItem?productId=@Html.DisplayFor(model => model.ProductId)&quantity"
-                   onclick="location.href = this.href + '=' +  document.getElementById('_quantity').value  ; return false;">Add to cart</a>
+                    if (Session["GroupName"].ToString().Equals("User"))
+                    {
+                    <a class="btn btn-success" id="cart" href="~/Cart/AddItem?productId=@Html.DisplayFor(model => model.ProductId)&quantity"
+                       onclick="location.href = this.href + '=' +  document.getElementById('_quantity').value  ; return false;">Add to cart</a>
+                    }
                 }
             </dd>
             @if (Session["count"] == null)

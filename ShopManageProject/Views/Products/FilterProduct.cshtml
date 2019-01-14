@@ -6,9 +6,15 @@
     IEnumerable<ShopManageProject.Models.Product> FilterProduct = ViewData["e"] as IEnumerable<ShopManageProject.Models.Product>;
     IEnumerable<ShopManageProject.Models.Product> SearchProduct = ViewData["d"] as IEnumerable<ShopManageProject.Models.Product>;
 }
-@{
-    ViewBag.Title = "FilterProduct";
-    Layout = "~/Views/Products/FilterProduct.cshtml";
+@if (Session["GroupName"].ToString().Equals("Admin"))
+{
+    ViewBag.Title = "Filter Product";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+else if (Session["GroupName"].ToString().Equals("User"))
+{
+    ViewBag.Title = "Filter Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>FilterProduct</h2>
@@ -88,7 +94,7 @@
                     {
 
                         <h3 class="panel-heading"> <a href="/Products/Index/@i.ProductCategoryId">@i.Name>></a></h3>
-                       
+
                         break;
                     }
                 }
@@ -126,7 +132,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     }
                 }
             </div>
@@ -135,4 +141,4 @@
 
     </div>
 
-    </div>
+</div>
