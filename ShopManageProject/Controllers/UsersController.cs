@@ -73,7 +73,7 @@ namespace ShopManageProject.Controllers
                     }
                 }
                     loginService.createUser(users);
-                return RedirectToAction("Index");
+                return RedirectToAction("Login","Login");
             }
 
             ViewBag.GroupId = new SelectList(db.UserGroup, "GroupId", "Name", users.GroupId);
