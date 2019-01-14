@@ -20,6 +20,7 @@ namespace ShopManageProject.Controllers
             Session.Remove("Name");
             Session.Remove("GroupID");
             Session.Remove("GroupName");
+
             //Session.RemoveAll();
             return View();
         }
@@ -34,14 +35,22 @@ namespace ShopManageProject.Controllers
         {
             var user = loginService.Login(u);
             bool checkLogin = loginService.CheckLogin(u);
-            if (u.Remember)
-            {
-                Session["UserName"] = user.UserName;
-                Session["Password"] = user.Password;
-            }
+            
+
             if (checkLogin && ModelState.IsValid)
             {
-                
+
+                if (u.Remember)
+                {
+                    Session["UserName"] = user.UserName;
+                    Session["Password"] = user.Password;
+                }
+                else if (!u.Remember)
+                {
+                    Session.Remove("UserName");
+                    Session.Remove("Password");
+                }
+
                 Session["UserID"] = user.UserId;
                 Session["Name"] = user.Name;
                 Session["GroupID"] = user.GroupId;
