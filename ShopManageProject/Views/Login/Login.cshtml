@@ -13,72 +13,77 @@
     @Html.AntiForgeryToken()
 
 
-    <div class="form-horizontal">
-        <h2>Đăng nhập</h2>
-        <hr />
+<div class="form-horizontal">
+    <h2>Đăng nhập</h2>
+    <hr />
 
-        <div class="form-group">
-            <label class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger", id = "valid" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-
-                @if (Session["UserName"] != null && Session["Password"] != null)
-                {
-                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", id = "username", Value = Session["UserName"].ToString() })
-                }
-                else
-                {
-                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", id = "username", Value = "" })
-                }
-
-
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-
-                @if (Session["UserName"] != null && Session["Password"] != null)
-                {
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", id = "password", Value = Session["Password"].ToString() } })
-                }
-                else
-                {
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", id = "password", Value = "" } })
-                }
-
-
-
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group col-md-12 col-sm-12">
-
-            <div class="col-md-2"></div>
-            <div class="col-md-2">
-
-                @Html.CheckBoxFor(model => model.Remember, htmlAttributes: new { @class = "control-label col-md-2" })Nhớ mật khẩu
-            </div>
-
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Đăng nhập" class="btn btn-default" id="login" />
-                <a class="btn btn-facebook" href="#">
-                    <i class="fa fa-facebook"></i>
-                    Đăng nhập bằng Facebook
-                </a>
-            </div>
+    <div class="form-group">
+        <label class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger", id = "valid" })
         </div>
     </div>
+
+
+    <div class="form-group col-md-12 col-sm-12">
+        <div class="col-md-2">
+            <strong> Tên tài khoản :</strong>
+        </div>
+        <div class="col-md-6">
+
+            @if (Session["UserName"] != null && Session["Password"] != null)
+            {
+                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", id = "username", Value = Session["UserName"].ToString() })
+            }
+            else
+            {
+                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", id = "username", Value = "" })
+            }
+
+
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-md-12 col-sm-12">
+        <div class="col-md-2">
+            <strong> Mật khẩu :</strong>
+        </div>
+        <div class="col-md-6">
+
+            @if (Session["UserName"] != null && Session["Password"] != null)
+            {
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", id = "password", Value = Session["Password"].ToString() } })
+            }
+            else
+            {
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", id = "password", Value = "" } })
+            }
+
+
+
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-md-12 col-sm-12">
+
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+
+            @Html.CheckBoxFor(model => model.Remember, htmlAttributes: new { @class = "control-label col-md-2" })Nhớ mật khẩu
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 col-sm-12">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Đăng nhập" class="btn btn-default" id="login" />
+            <a class="btn btn-facebook" href="#">
+                <i class="fa fa-facebook"></i>
+                Đăng nhập bằng Facebook
+            </a>
+        </div>
+    </div>
+</div>
 }

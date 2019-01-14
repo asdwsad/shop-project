@@ -72,7 +72,8 @@ namespace ShopManageProject.Controllers
                         users.GroupId = item.GroupId;
                     }
                 }
-                    loginService.createUser(users);
+
+                loginService.createUser(users);
                 return RedirectToAction("Login","Login");
             }
 
