@@ -1,8 +1,19 @@
 ﻿@model ShopManageProject.Models.Users
 
-@{
+@if (Session["GroupName"].ToString().Equals("Admin"))
+{
+    ViewBag.Title = "AdminDetails";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}else if(Session["GroupName"].ToString().Equals("User"))
+{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+@{
+        ViewBag.Title = "Details";
+    }
 
 <h2>Chi tiết</h2>
 
@@ -34,7 +45,7 @@
         </dd>
 
         <dt>
-           Địa chỉ
+            Địa chỉ
         </dt>
 
         <dd>
@@ -50,7 +61,7 @@
         </dd>
 
         <dt>
-           Số điện thoại
+            Số điện thoại
         </dt>
 
         <dd>
@@ -58,7 +69,7 @@
         </dd>
 
         <dt>
-           Ngày cập nhật
+            Ngày cập nhật
         </dt>
 
         <dd>
@@ -66,15 +77,15 @@
         </dd>
 
         @*<dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>*@
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>*@
 
         <dt>
-           Quyền
+            Quyền
         </dt>
 
         <dd>
@@ -85,5 +96,5 @@
 </div>
 <p>
     @Html.ActionLink("Sửa", "Edit", new { id = Model.UserId }) |
-    @Html.ActionLink("Về trang chủ", "Index","Products")
+    @Html.ActionLink("Về trang chủ", "Index", "Products")
 </p>

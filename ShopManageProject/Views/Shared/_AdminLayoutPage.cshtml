@@ -53,7 +53,7 @@
                     </li>
                     <li><a href="~/Admin/" style="color:cyan">Quản lý Đơn hàng</a></li>
                     <li><a href="~/Products/Index" style="color:cyan">Sản Phẩm</a></li>
-                   
+
                 </ul>
 
                 @using (Html.BeginForm("Search", "Products", FormMethod.Get, new { @class = "navbar-form navbar-right", role = "search", id = "search-form" }))
@@ -73,8 +73,16 @@
 
 
 
-    <div>
+    <div class="container body-content">
         @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My Application</p>
+        </footer>
     </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
