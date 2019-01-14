@@ -19,6 +19,7 @@ namespace ShopManageProject.Controllers
             Session.Remove("UserID");
             Session.Remove("Name");
             Session.Remove("GroupID");
+            Session.Remove("GroupName");
             //Session.RemoveAll();
             return View();
         }
@@ -40,7 +41,7 @@ namespace ShopManageProject.Controllers
                 Session["UserID"] = user.UserId;
                 Session["Name"] = user.Name;
                 Session["GroupID"] = user.GroupId;
-                
+                Session["GroupName"] = user.UserGroup.Name;
                 // check user group
                 foreach (var item in loginService.group())
                 {

@@ -41,6 +41,8 @@ namespace ShopManageProject.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+
+
         // GET: Users/Create
         public ActionResult Create()
         {
@@ -126,11 +128,16 @@ namespace ShopManageProject.Controllers
                 //{
                 //    return RedirectToAction("ProductList", "Admin");
                 //}
-                return RedirectToAction("Details","Users",new { id=users.UserId});
+                TempData["Message"] = "Cập nhật tài khoản thành công";
+                return View();
             }
-            ViewBag.GroupId = new SelectList(db.UserGroup, "GroupId", "Name", users.GroupId);
+
+            //ViewBag.GroupId = new SelectList(db.UserGroup, "GroupId", "Name", users.GroupId);
+
             return View(users);
         }
+
+
 
         //// GET: Users/Delete/5
         //public ActionResult Delete(long? id)
